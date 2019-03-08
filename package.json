@@ -1,5 +1,5 @@
 {
-  "name": "synergy_web",
+  "name": "intelli_iot",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
@@ -20,11 +20,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/annant05/sy_node_project.git"
+    "url": "githttps://github.com/Annant05/intelli_node_project.git"
   },
   "bugs": {
-    "url": "https://github.com/annant05/sy_node_project/issues"
+    "url": "https://github.com/Annant05/intelli_node_project/issues"
   },
-  "homepage": "https://github.com/annant05/sy_node_project#readme",
-  "description": "Node Js application for Synergy Website"
+  "homepage": "https://github.com/Annant05/intelli_node_project#readme",
+  "description": "Node Js application for Intellij Iot"
 }
