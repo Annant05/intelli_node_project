@@ -160,7 +160,7 @@
             $(menu[i]).on('click', function (e) {
                 e.preventDefault();
                 $('.js-right-sidebar').removeClass("show-sidebar");
-                if (jQuery.inArray(this, menu) == sub_menu_is_showed) {
+                if (jQuery.inArray(this, menu) === sub_menu_is_showed) {
                     $(this).toggleClass('show-dropdown');
                     sub_menu_is_showed = -1;
                 } else {
