@@ -1,0 +1,11 @@
+.status-updating {
+    background: yellow;
+    color: red
+}
+
+
+.status-working {
+    background: green;
+    color: white;
+}
+

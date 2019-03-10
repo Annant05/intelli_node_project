@@ -11,12 +11,10 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>
-        <%= TITLE %>
-    </title>
+    <title>Intelli Meter </title>
 
     <!-- Fontfaces CSS-->
-    <!--<link href="/css#-face.css" rel="stylesheet" media="all">-->
+    <!--<link href="/css/font-face.css" rel="stylesheet" media="all">-->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           media="all">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.css" rel="stylesheet" media="all">
@@ -30,7 +28,7 @@
     <!-- /vendor CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/css/animsition.min.css" rel="stylesheet"
           media="all">
-    <!--<link href/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">-->
+    <!--<link href="/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css" rel="stylesheet" media="all">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.1.3/hamburgers.min.css" rel="stylesheet"
           media="all">
@@ -43,7 +41,7 @@
     <link href="/css/theme.css" rel="stylesheet" media="all">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 
-    // include jquery
+    <!--// include jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         new WOW().init();
@@ -58,7 +56,7 @@
         <div class="header-mobile__bar">
             <div class="container-fluid">
                 <div class="header-mobile-inner">
-                    <a class="logo" href="#">
+                    <a class="logo" href="/index">
                         <img src="/images/icon/logo.png" alt="CoolAdmin"/>
                     </a>
                     <button class="hamburger hamburger--slider" type="button">
@@ -73,23 +71,23 @@
             <div class="container-fluid">
                 <ul class="navbar-mobile__list list-unstyled">
                     <li class="has-sub">
-                        <a class="js-arrow" href="#">
+                        <a class="js-arrow" href="/index">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/coming">
                             <i class="fas fa-users"></i>Collaborators</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/outputs">
                             <i class="fas fa-bar-chart"></i>Monitor</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/coming">
                             <i class="far fa-clock-o"></i>Alarms</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/coming">
                             <i class="fas fa-life-ring"></i>Support</a>
                     </li>
                 </ul>
@@ -100,7 +98,7 @@
     <!-- MENU SIDEBAR-->
     <aside class="menu-sidebar d-none d-lg-block">
         <div class="logo">
-            <a href="#">
+            <a href="/index">
                 <img src="/images/icon/logo.png" alt="Cool Admin"/>
             </a>
         </div>
@@ -108,23 +106,23 @@
             <nav class="navbar-sidebar">
                 <ul class="list-unstyled navbar__list">
                     <li class="has-sub">
-                        <a class="js-arrow" href="#">
+                        <a class="js-arrow" href="/index">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/coming">
                             <i class="fas fa-users"></i>Collaborators</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/outputs">
                             <i class="fas fa-bar-chart"></i>Monitor</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/coming">
                             <i class="far fa-clock-o"></i>Alarms</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/coming">
                             <i class="fas fa-life-ring"></i>Support</a>
                     </li>
                 </ul>
@@ -191,7 +189,7 @@
                                             </div>
                                         </div>
                                         <div class="account-dropdown__footer">
-                                            <a href="#">
+                                            <a href="/login">
                                                 <i class="zmdi zmdi-power"></i>Logout</a>
                                         </div>
                                     </div>
@@ -208,166 +206,104 @@
         <!-- MAIN CONTENT-->
         <div class="main-content">
             <div class="section__content section__content--p30">
-                <div class="container-fluid">
 
+                <!---- Action First End (More Functionality can be added here, if we extend this project)----->
+
+                <!--<br>-->
+                <div class="col-lg-12 col-md-12">
+                    <h2 class="title-1 m-b-25 animated fadeInDown">Your Environments</h2>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="overview-wrap">
-                                <h2 class="title-1 animated fadeInDown">overview</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row m-t-25">
-                        <div class="col-sm-6 col-md-4 animated fadeIn">
-                            <a href="#">
-                                <div class="overview-item overview-item--c1 animated fadeInDown">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix text-center fun_box">
-                                            <div class="icon">
-                                                <img class="img-responsive"
-                                                     style="margin-bottom:20px; width:72px; height:70px;"
-                                                     src="/images/cloud-computing.png">
-                                            </div>
-                                            <div class="text">
-                                                <h2>Launch a Custom Environment</h2>
-                                            </div>
-                                        </div>
+                            <div class="row">
+                                <div class="col-lg-12 shadow p-3 mb-5 bg-white rounded">
+                                    <div class="table-responsive table-data">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>ID</td>
+                                                <td>Web Servers</td>
+                                                <td>DB Servers</td>
+                                                <td>Launch Time</td>
+                                                <td>Status</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="table-data__info">
+                                                        <h6>TCS</h6>
+                                                    </div>
+                                                </td>
+                                                <td>78456598</td>
+                                                <td>2</td>
+                                                <td>1</td>
+                                                <td>December 22, 2018 at 11:50 PM</td>
+                                                <td>
+                                                    <span class="role member">Deployed</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <div class="table-data__info">
+                                                        <h6>Clustroit</h6>
+                                                    </div>
+                                                </td>
+                                                <td>54698754</td>
+                                                <td>4</td>
+                                                <td>1</td>
+                                                <td>December 21, 2018 at 12:30 PM</td>
+                                                <td>
+                                                    <span class="role admin">Deleted </span>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-sm-6 col-md-4 animated fadeIn">
-                            <div class="overview-item overview-item--c2 animated fadeInUp">
-                                <div class="overview__inner">
-                                    <div class="overview-box clearfix text-center fun_box ">
-                                        <div class="icon">
-                                            <img class="img-responsive"
-                                                 style="margin-bottom:22px; width:67px; height:67px;"
-                                                 src="/images/cloud-network.png">
-                                        </div>
-                                        <div class="text">
-                                            <h2>Create a Template</h2><br>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 animated fadeIn">
-                            <a href="#">
-                                <div class="overview-item overview-item--c3 animated fadeInDown">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix text-center fun_box">
-                                            <div class="icon">
-                                                <img class="img-responsive"
-                                                     style="margin-bottom:20px; width:70px; height:70px;"
-                                                     src="/images/file.png">
-                                            </div>
-                                            <div class="text">
-                                                <h2>Launch from existing Template</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
 
-                    <!---- Action First End (More Functionality can be added here, if we extend this project)----->
-
-
-                    <br>
-                    <div class="col-lg-12 col-md-12">
-                        <h2 class="title-1 m-b-25 animated fadeInDown">Your Environments</h2>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-lg-12 shadow p-3 mb-5 bg-white rounded">
-                                        <div class="table-responsive table-data">
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>ID</td>
-                                                    <td>Web Servers</td>
-                                                    <td>DB Servers</td>
-                                                    <td>Launch Time</td>
-                                                    <td>Status</td>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="table-data__info">
-                                                            <h6>TCS</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td>78456598</td>
-                                                    <td>2</td>
-                                                    <td>1</td>
-                                                    <td>December 22, 2018 at 11:50 PM</td>
-                                                    <td>
-                                                        <span class="role member">Deployed</span>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>
-                                                        <div class="table-data__info">
-                                                            <h6>Clustroit</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td>54698754</td>
-                                                    <td>4</td>
-                                                    <td>1</td>
-                                                    <td>December 21, 2018 at 12:30 PM</td>
-                                                    <td>
-                                                        <span class="role admin">Deleted </span>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <h2 class="title-1 m-b-25 animated fadeInDown">Quick Analytics</h2>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="au-card m-b-30">
-                                <div class="au-card-inner">
-                                    <h3 class="title-2 m-b-40">Usage Stats</h3>
-                                    <canvas id="pieChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="au-card m-b-30">
-                                <div class="au-card-inner">
-                                    <h3 class="title-2 m-b-40">Expected Bill</h3>
-                                    <canvas id="singelBarChart"></canvas>
-                                    <br>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!--- Action Second Section End (More Functionality can be added here, if we extend this project)---->
+                <br>
 
+                <h2 class="title-1 m-b-25 animated fadeInDown">Quick Analytics</h2>
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="copyright">
-                            <p>Developed by Team Clustroit | TCS Inframind Contest</p>
+                    <div class="col-lg-6">
+                        <div class="au-card m-b-30">
+                            <div class="au-card-inner">
+                                <h3 class="title-2 m-b-40">Usage Stats</h3>
+                                <canvas id="pieChart"></canvas>
+                            </div>
                         </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="au-card m-b-30">
+                            <div class="au-card-inner">
+                                <h3 class="title-2 m-b-40">Expected Bill</h3>
+                                <canvas id="singelBarChart"></canvas>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--- Action Second Section End (More Functionality can be added here, if we extend this project)---->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright">
+                        <p>Developed by Team Clustroit | TCS Inframind Contest</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- END MAIN CONTENT-->
     <!-- END PAGE CONTAINER-->
 </div>
@@ -375,7 +311,7 @@
 <!-- Jquery JS-->
 <!--<script src="/vendor/jquery-3.2.1.min.js"></script>-->
 <!-- Bootstrap JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/esm/popper.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/esm/popper.min.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <!-- /vendor JS       -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js">
