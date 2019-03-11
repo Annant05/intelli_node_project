@@ -13,7 +13,7 @@
     <!-- Title Page-->
     <title>Intelli Meter</title>
 
-    <% include partials/head_css.ejs%>
+    <% include partials/head_css.ejs %>
 
     <script>
         new WOW().init();
@@ -24,120 +24,115 @@
 <body class="animsition">
 <div class="page-wrapper">
 
-   <% include partials/sidemenu.ejs %>
+    <% include partials/sidemenu.ejs %>
 
     <!-- PAGE CONTAINER-->
     <div class="page-container">
 
-       <%include partials/header_nav.ejs%>
-
+        <% include partials/header_nav.ejs %>
 
         <!-- MAIN CONTENT-->
         <div class="main-content">
-            <div class="section__content section__content--p30">
 
-                <!---- Action First End (More Functionality can be added here, if we extend this project)----->
+            <!---- Action First End (More Functionality can be added here, if we extend this project)----->
 
-                <!--<br>-->
-                <div class="container">
+            <!--<br>-->
+            <div class="container">
 
-                    <div class="col-lg-12 col-md-12" id="table_container">
-                        <h2 class="title-1 m-b-25 animated fadeInDown">Your Devices</h2>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-lg-12 shadow p-3 mb-5 bg-white rounded">
+                <div class="col-lg-12 col-md-12">
+                    <h2 class="title-1 m-b-25 animated fadeInDown">Your Devices</h2>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-lg-12 shadow p-3 mb-5 bg-white rounded">
 
-                                        <div class="table-responsive-lg">
-                                            <table class=" table table-md  table-bordered">
-                                                <thead class="thead-light">
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>ID</td>
-                                                    <td>Today's Consumption (in KWh)</td>
-                                                    <td>Alerts</td>
-                                                    <td>Status</td>
-                                                    <td>Total Consumption (in KWh)</td>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
+                                    <div class="table-responsive-lg" style="text-align: center">
+                                        <table class="table table-striped table-hover">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Today (in
+                                                    KWh)
+                                                </th>
+                                                <th scope="col">Alerts</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Total (in
+                                                    KWh)
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="table-data__info">
+                                                        <h6>Home</h6>
+                                                    </div>
+                                                </td>
+                                                <td>78456598</td>
+                                                <td>50</td>
+                                                <td>3</td>
+                                                <td>
+                                                    <span class="role status-working">Working</span>
+                                                </td>
+                                                <td>557</td>
 
-                                                <tr>
-                                                    <td>
-                                                        <div class="table-data__info">
-                                                            <h6>Home</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td>78456598</td>
-                                                    <td>50</td>
-                                                    <td>3</td>
-                                                    <td>
-                                                        <span class="role status-working">Working</span>
-                                                    </td>
-                                                    <td>557</td>
+                                            </tr>
 
-                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="table-data__info">
+                                                        <h6>Office</h6>
+                                                    </div>
+                                                </td>
+                                                <td>74126985</td>
+                                                <td>80</td>
+                                                <td>1</td>
+                                                <td>
+                                                    <span class="role status-updating">Updating</span>
+                                                </td>
+                                                <td>834</td>
 
-                                                <tr>
-                                                    <td>
-                                                        <div class="table-data__info">
-                                                            <h6>Office</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td>74126985</td>
-                                                    <td>80</td>
-                                                    <td>1</td>
-                                                    <td>
-                                                        <span class="role status-updating">Updating</span>
-                                                    </td>
-                                                    <td>834</td>
+                                            </tr>
 
-                                                </tr>
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <br>
+                <br>
 
-                    <h2 class="title-1 m-b-25 animated fadeInDown">Quick Analytics</h2>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="au-card m-b-30">
-                                <div class="au-card-inner">
-                                    <h3 class="title-2 m-b-40">Usage Stats</h3>
-                                    <canvas id="usagePieChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="au-card m-b-30">
-                                <div class="au-card-inner">
-                                    <h3 class="title-2 m-b-40">Expected Bill</h3>
-                                    <canvas id="costBarChart"></canvas>
-                                    <br>
-                                </div>
+                <h2 class="title-1 m-b-25 animated fadeInDown">Quick Analytics</h2>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="au-card m-b-30">
+                            <div class="au-card-inner">
+                                <h3 class="title-2 m-b-40">Usage Stats</h3>
+                                <canvas id="usagePieChart"></canvas>
                             </div>
                         </div>
                     </div>
-
-
+                    <div class="col-lg-6">
+                        <div class="au-card m-b-30">
+                            <div class="au-card-inner">
+                                <h3 class="title-2 m-b-40">Expected Bill</h3>
+                                <canvas id="costBarChart"></canvas>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-
             </div>
-
-            <!--- Action Second Section End (More Functionality can be added here, if we extend this project)---->
-
-            <% include partials/copyright.ejs%>
-
         </div>
+
+        <!--- Action Second Section End (More Functionality can be added here, if we extend this project)---->
+
+        <% include partials/copyright.ejs %>
+
     </div>
 
     <!-- END MAIN CONTENT-->
