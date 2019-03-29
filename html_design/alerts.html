@@ -11,9 +11,46 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Alerts</title>
+    <title>Intelli Meter</title>
 
-    <% include partials/head_css.ejs %>
+    <!-- Fontfaces CSS-->
+    <!--<link href="/css/font-face.css" rel="stylesheet" media="all">-->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+          rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          media="all">
+
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+
+    <!-- /vendor CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/css/animsition.min.css" rel="stylesheet"
+          media="all">
+    <!--<link href="../public/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.1.3/hamburgers.min.css" rel="stylesheet"
+          media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/css/perfect-scrollbar.min.css"
+          rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="../public/css/theme.css" rel="stylesheet" media="all">
+    <link href="../public/css/custom.css" rel="stylesheet" media="all">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+
+    <!--// include jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
     <script>
         new WOW().init();
@@ -24,12 +61,159 @@
 <body class="animsition">
 <div class="page-wrapper">
 
-    <% include partials/sidemenu.ejs %>
+    <!-- HEADER MOBILE-->
+    <header class="header-mobile d-block d-lg-none">
+        <div class="header-mobile__bar">
+            <div class="container-fluid">
+                <div class="header-mobile-inner">
+                    <a class="logo" href="/index">
+                        <img src="../public/images/icon/logo.png" alt="CoolAdmin"/>
+                    </a>
+                    <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar-mobile">
+            <div class="container-fluid">
+                <ul class="navbar-mobile__list list-unstyled">
+                    <li class="has-sub">
+                        <a class="js-arrow" href="/index">
+                            <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/coming">
+                            <i class="fas fa-users"></i>Collaborators</a>
+                    </li>
+                    <li>
+                        <a href="/outputs">
+                            <i class="fas fa-bar-chart"></i>Monitor</a>
+                    </li>
+                    <li>
+                        <a href="/coming">
+                            <i class="far fa-clock-o"></i>Alarms</a>
+                    </li>
+                    <li>
+                        <a href="/coming">
+                            <i class="fas fa-life-ring"></i>Support</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- END HEADER MOBILE-->
+
+    <!-- MENU SIDEBAR-->
+    <aside class="menu-sidebar d-none d-lg-block">
+        <div class="logo">
+            <a href="/index">
+                <img src="../public/images/icon/logo.png" alt="Cool Admin"/>
+            </a>
+        </div>
+        <div class="menu-sidebar__content js-scrollbar1">
+            <nav class="navbar-sidebar">
+                <ul class="list-unstyled navbar__list">
+                    <li class="has-sub">
+                        <a class="js-arrow" href="/index">
+                            <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/alerts">
+                            <i class="fas fa-bell"></i>Alerts/Notifications</a>
+                    </li>
+                    <li>
+                        <a href="/records">
+                            <i class="fas fa-bar-chart"></i>Past Records</a>
+                    </li>
+                    <li>
+                        <a href="/bill">
+                            <i class="far fa-file-pdf-o"></i>Bill Generation</a>
+                    </li>
+                    <li>
+                        <a href="/monitor">
+                            <i class="fas fa-clock"></i>Monitoring</a>
+                    </li>
+                    <li>
+                        <a href="/support">
+                            <i class="fas fa-question-circle"></i>Help and Support</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+    <!-- END MENU SIDEBAR-->
+
 
     <!-- PAGE CONTAINER-->
     <div class="page-container">
+        <header class="header-desktop">
+            <div class="container">
 
-        <% include partials/header_nav.ejs %>
+
+                <div class="float-left my-3">
+                    <form class="form-header" action="" method="POST">
+                        <input class="au-input au-input--xl" type="text" name="search"
+                               placeholder="What do you want to do?"/>
+                        <button class="au-btn--submit" type="submit">
+                            <i class="zmdi zmdi-search"></i>
+                        </button>
+                    </form>
+                </div>
+
+
+                <div class="float-right my-3">
+                    <div class="account-wrap">
+                        <div class="account-item clearfix js-item-menu">
+                            <div class="image">
+                                <img src="../public/images/icon/profile_nav.png" alt="User 1"/>
+                            </div>
+                            <div class="content">
+                                <a class="js-acc-btn" href="#">User 1</a>
+                            </div>
+                            <div class="account-dropdown js-dropdown">
+                                <div class="info clearfix">
+                                    <div class="image">
+                                        <a href="#">
+                                            <img src="../public/images/icon/profile_nav.png" alt="profile"/>
+                                        </a>
+                                    </div>
+                                    <div class="content">
+                                        <h5 class="name">
+                                            <a href="#">User 1</a>
+                                        </h5>
+                                        <span class="email">user1@gmail.com</span>
+                                    </div>
+                                </div>
+                                <div class="account-dropdown__body">
+                                    <div class="account-dropdown__item">
+                                        <a href="#">
+                                            <i class="zmdi zmdi-account"></i>Account</a>
+                                    </div>
+                                    <div class="account-dropdown__item">
+                                        <a href="#">
+                                            <i class="zmdi zmdi-settings"></i>Setting</a>
+                                    </div>
+                                    <div class="account-dropdown__item">
+                                        <a href="#">
+                                            <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                    </div>
+                                </div>
+                                <div class="account-dropdown__footer">
+                                    <a href="/login">
+                                        <i class="zmdi zmdi-power"></i>Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
 
         <!-- MAIN CONTENT-->
         <div class="main-content">
@@ -224,22 +408,55 @@
                 </div>
             </div>
 
-            <% include partials/copyright.ejs %>
+
         </div>
         <!-- END MAIN CONTENT-->
+        <!--- Action Second Section End (More Functionality can be added here, if we extend this project)---->
 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="copyright">
+                    <p>Developed by Team TAG | Intelli Meter</p>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- END MAIN CONTENT-->
     <!-- END PAGE CONTAINER-->
-
-
 </div>
 
-<% include partials/js_bottom.ejs %>
+<!-- Jquery JS-->
+<!--<script src="/vendor/jquery-3.2.1.min.js"></script>-->
+<!-- Bootstrap JS-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/esm/popper.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- /vendor JS       -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/js/animsition.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-progressbar/0.9.0/bootstrap-progressbar.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js">
+</script>
+
 
 <!-- Main JS-->
 <!--<script src="../public/js/main.js"></script>-->
 <!--Graphs Updater  -->
-<script src="alerts.js"></script>
+<script src="../public/js/main.js"></script>
+<script src="../views/alerts.js"></script>
+
+<script>
+    $('#modal_create_alert').modal('show');
+</script>
 
 </body>
 </html>

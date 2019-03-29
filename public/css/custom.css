@@ -9,3 +9,17 @@
     color: white;
 }
 
+.alarm-alert {
+    background: red;
+    color: white
+}
+
+.alarm-ok {
+    background: green;
+    color: white;
+}
+
+.alarm-insufficent {
+    background: yellow;
+    color: red
+}
