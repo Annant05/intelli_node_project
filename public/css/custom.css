@@ -23,3 +23,7 @@
     background: yellow;
     color: red
 }
+
+.display-none {
+    display: none;
+}
