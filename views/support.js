@@ -53,9 +53,11 @@ function attach_event_triggers() {
 
         card_email.toggleClass('text-white', true);
         card_email.toggleClass('bg-success', true);
+        card_email.find('.card-subtitle').toggleClass('text-white', true);
 
         card_mobile.toggleClass('text-white', false);
         card_mobile.toggleClass('bg-success', false);
+        card_mobile.find('.card-subtitle').toggleClass('text-white', false);
 
     });
 
@@ -68,9 +70,11 @@ function attach_event_triggers() {
 
         card_mobile.toggleClass('text-white', true);
         card_mobile.toggleClass('bg-success', true);
+        card_mobile.find('.card-subtitle').toggleClass('text-white', true);
 
         card_email.toggleClass('text-white', false);
         card_email.toggleClass('bg-success', false);
+        card_email.find('.card-subtitle').toggleClass('text-white', false);
 
     });
 
