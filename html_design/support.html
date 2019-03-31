@@ -240,11 +240,11 @@
                                             <div class="col-sm-3">
                                                 <select id="dropdown_case_category"
                                                         class="form-control form-control-sm">
-                                                    <option>Billing Support</option>
-                                                    <option>Account Issues</option>
-                                                    <option>Upgrade Issue</option>
-                                                    <option>New Connection Query</option>
-                                                    <option>Other Issues</option>
+                                                    <option value="billing">Billing Support</option>
+                                                    <option value="account">Account Issues</option>
+                                                    <option value="upgrade">Upgrade Issue</option>
+                                                    <option value="new">New Connection Query</option>
+                                                    <option value="other">Other Issues</option>
                                                 </select>
 
                                             </div>
@@ -302,7 +302,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="input_alarm_threshold_val"
+                                            <label for="input_case_file_attachment"
                                                    class="col-sm-2 col-form-label col-form-label-sm">Attachments
                                                 : </label>
                                             <div class="col-sm-6">
@@ -334,7 +334,8 @@
                                             </label>
 
 
-                                            <div class="card mx-3 col-sm-4 text-center text-white bg-success">
+                                            <div class="card mx-3 col-sm-4 text-center"
+                                                 id="card_email">
                                                 <div class="card-header">Email</div>
 
                                                 <div class="mx-3 card-body">
@@ -346,7 +347,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="card mx-3 col-sm-4 text-center">
+                                            <div class="card mx-3 col-sm-4 text-center" id="card_mobile">
                                                 <div class="card-header">Mobile</div>
 
                                                 <div class="mx-3 card-body">
@@ -373,100 +374,6 @@
 
                 <br>
 
-            </div>
-
-
-            <!-- Modal  for  create alerts-->
-            <div class="modal fade" id="modal_create_alert" tabindex="-1" role="dialog"
-                 aria-labelledby="modal_create_alert_title" aria-hidden="true">
-
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modal_create_alert_title"> Create a new Alert
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-
-                            <div class="ml-5" id="modal_form_container">
-
-                                <div class="form-group row">
-                                    <label for="input_alarm_name"
-                                           class="col-sm-4 col-form-label col-form-label-sm">Alert Name : </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" id="input_alarm_name"
-                                               class="form-control form-control-sm"
-                                               placeholder="Ex. Home 50 Unit">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <label for="attach_to"
-                                           class="col-sm-4 col-form-label col-form-label-sm">Attach To : </label>
-                                    <div class="col-sm-6">
-                                        <select id="attach_to" class="form-control form-control-sm">
-                                            <option>Home-4848465</option>
-                                            <option>Office-6842628</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="input_alarm_sms_no"
-                                           class="col-sm-4 col-form-label col-form-label-sm">Alert To : </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" id="input_alarm_sms_no"
-                                               class="form-control form-control-sm"
-                                               oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
-                                               onKeyDown="if(this.value.length===10 && event.keyCode!==8) return false;"
-                                               placeholder="Mobile no.">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="input_alarm_threshold_val"
-                                           class="col-sm-4 col-form-label col-form-label-sm">Threshold Value
-                                        : </label>
-                                    <div class="col-sm-6">
-                                        <input type="number" id="input_alarm_threshold_val"
-                                               class="form-control form-control-sm"
-                                               placeholder="Ex. 50">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="input_alarm_for_time"
-                                           class="col-sm-4 col-form-label col-form-label-sm">For a time of </label>
-                                    <div class="col-sm-2">
-                                        <input type="number" id="input_alarm_for_time" min="1" max="10000"
-                                               class="form-control form-control-sm"
-                                               placeholder="">
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <select id="input_alarm_time_unit" class="form-control form-control-sm">
-                                            <option>Month</option>
-                                            <option>Day</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button id="modal_button_close" type="button" class="btn btn-secondary"
-                                    data-dismiss="modal">Cancel
-                            </button>
-                            <button id="modal_button_create_alert" type="button" class="btn btn-primary">Create
-                                Alarm
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
             </div>
 
 
