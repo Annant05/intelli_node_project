@@ -12,6 +12,7 @@ let input_email = null;
 let input_mobile = null;
 let card_email = null;
 let card_mobile = null;
+let button_create_case = null;
 
 function documentReady() {
 
@@ -29,7 +30,7 @@ function documentReady() {
     input_mobile = $('#input_mobile');
     card_email = $('#card_email');
     card_mobile = $('#card_mobile ');
-
+    button_create_case = $('#button_create_case');
 
     attach_event_triggers();
 }
@@ -78,6 +79,9 @@ function attach_event_triggers() {
 
     });
 
+    button_create_case.click(() => {
+        console.log("clicked on button create case");
+    });
 
 }
 
