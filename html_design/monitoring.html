@@ -11,7 +11,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>Monitoring</title>
 
     <!-- Fontfaces CSS-->
     <!--<link href="/css/font-face.css" rel="stylesheet" media="all">-->
@@ -219,93 +219,64 @@
             <div class="container">
 
                 <div class="col-lg-12 col-md-12">
-                    <h2 class="title-1 m-b-25 animated fadeInDown">Your Devices</h2>
+                    <h2 class="title-1 m-b-25 animated fadeInDown">Monitoring</h2>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-lg-12 shadow p-3 mb-5 bg-white rounded">
 
-                                    <div class="table-responsive-lg" style="text-align: center">
-                                        <table class="table table-striped table-hover">
-                                            <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">Today (in
-                                                    KWh)
-                                                </th>
-                                                <th scope="col">Alerts</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Total (in
-                                                    KWh)
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-data__info">
-                                                        <h6>Home</h6>
-                                                    </div>
-                                                </td>
-                                                <td>78456598</td>
-                                                <td>50</td>
-                                                <td>3</td>
-                                                <td>
-                                                    <span class="role status-working">Working</span>
-                                                </td>
-                                                <td>557</td>
+                                    <div id="section_dropdown_select">
 
-                                            </tr>
+                                        <div class="float-left">
 
-                                            <tr>
-                                                <td>
-                                                    <div class="table-data__info">
-                                                        <h6>Office</h6>
-                                                    </div>
-                                                </td>
-                                                <td>74126985</td>
-                                                <td>80</td>
-                                                <td>1</td>
-                                                <td>
-                                                    <span class="role status-updating">Updating</span>
-                                                </td>
-                                                <td>834</td>
+                                            <div class="form-group row">
 
-                                            </tr>
+                                                <label for="dropdown_device"
+                                                       class="col-sm-1 mx-3 col-form-label">From: </label>
 
-                                            </tbody>
-                                        </table>
+                                                <div class="col-sm-4">
+                                                    <select id="dropdown_device" class="form-control ">
+                                                        <option>Home-7845854</option>
+                                                        <option>Office-5854256</option>
+                                                    </select>
+                                                </div>
+
+                                                <label for="dropdown_date"
+                                                       class="col-sm-1 mx-3 col-form-label">Date: </label>
+
+                                                <div class="col-sm-4">
+                                                    <select id="dropdown_date"
+                                                            class="form-control">
+                                                        <option>April 2019</option>
+                                                        <option>March 2019</option>
+                                                        <option>February 2019</option>
+                                                        <option>January 2019</option>
+                                                        <option>December 2018</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="float-right">
+                                            <button id="button_download_pdf" class="mx-2 btn btn-primary">Download
+                                            </button>
+
+                                            <button id="button_pay_bill" class="mx-2 btn btn-primary">Pay Bill</button>
+                                        </div>
+
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <br>
-
-                <h2 class="title-1 m-b-25 animated fadeInDown">Quick Analytics</h2>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="au-card m-b-30">
-                            <div class="au-card-inner">
-                                <h3 class="title-2 m-b-40">Usage Stats</h3>
-                                <canvas id="usagePieChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="au-card m-b-30">
-                            <div class="au-card-inner">
-                                <h3 class="title-2 m-b-40">Expected Bill</h3>
-                                <canvas id="costBarChart"></canvas>
-                                <br>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
 
         <!--- Action Second Section End (More Functionality can be added here, if we extend this project)---->
@@ -349,7 +320,7 @@
 <!--<script src="../public/js/main.js"></script>-->
 <!--Graphs Updater  -->
 <script src="../public/js/main.js"></script>
-<script src="../views/index.js"></script>
+<script src="../views/monitoring.js"></script>
 
 </body>
 </html>
