@@ -37,35 +37,35 @@
             <!---- Action First End (More Functionality can be added here, if we extend this project)----->
 
             <!--<br>-->
-            <div class="container" id="main_content_container">
+            <div class="container">
 
-                <div class="col-lg-12 col-md-12" id="table container">
+                <div class="col-lg-12 col-md-12">
                     <h2 class="title-1 m-b-25 animated fadeInDown">Your Devices</h2>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-lg-12 shadow p-3 mb-5 bg-white rounded">
 
-                                    <div class="table-responsive-lg">
-                                        <table class=" table table-md  table-bordered">
+                                    <div class="table-responsive-lg" style="text-align: center">
+                                        <table class="table table-hover" id="table_devices">
                                             <thead class="thead-light">
                                             <tr>
-                                                <td>Name</td>
-                                                <td>ID</td>
-                                                <td>Today's Consumption (in KWh)</td>
-                                                <td>Alerts</td>
-                                                <td>Status</td>
-                                                <td>Total Consumption (in KWh)</td>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Today (in
+                                                    KWh)
+                                                </th>
+                                                <th scope="col">Alerts</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Total (in
+                                                    KWh)
+                                                </th>
                                             </tr>
                                             </thead>
-                                            <tbody>
 
+                                            <tbody id="table_devices_body">
                                             <tr>
-                                                <td>
-                                                    <div class="table-data__info">
-                                                        <h6>Home</h6>
-                                                    </div>
-                                                </td>
+                                                <td>Home</td>
                                                 <td>78456598</td>
                                                 <td>50</td>
                                                 <td>3</td>
@@ -77,11 +77,7 @@
                                             </tr>
 
                                             <tr>
-                                                <td>
-                                                    <div class="table-data__info">
-                                                        <h6>Office</h6>
-                                                    </div>
-                                                </td>
+                                                <td>Office</td>
                                                 <td>74126985</td>
                                                 <td>80</td>
                                                 <td>1</td>
@@ -91,7 +87,6 @@
                                                 <td>834</td>
 
                                             </tr>
-
 
                                             </tbody>
                                         </table>
@@ -104,30 +99,31 @@
 
                 <br>
 
-                <div id="charts_container">
-                    <h2 class="title-1 m-b-25 animated fadeInDown">Quick Analytics</h2>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="au-card m-b-30">
-                                <div class="au-card-inner">
-                                    <h3 class="title-2 m-b-40">Usage Stats</h3>
-                                    <canvas id="usagePieChart"></canvas>
-                                </div>
+                <h2 class="title-1 m-b-25 animated fadeInDown">Quick Analytics</h2>
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="au-card m-b-30">
+                            <div class="au-card-inner">
+                                <h3 class="title-2 m-b-40">Usage Stats</h3>
+                                <canvas id="usagePieChart"></canvas>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="au-card m-b-30">
-                                <div class="au-card-inner">
-                                    <h3 class="title-2 m-b-40">Expected Bill</h3>
-                                    <canvas id="costBarChart"></canvas>
-                                    <br>
-                                </div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="au-card m-b-30">
+                            <div class="au-card-inner">
+                                <h3 class="title-2 m-b-40">Expected Bill</h3>
+                                <canvas id="costBarChart"></canvas>
+                                <br>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
+
             <!--- Action Second Section End (More Functionality can be added here, if we extend this project)---->
 
             <% include partials/copyright.ejs %>
