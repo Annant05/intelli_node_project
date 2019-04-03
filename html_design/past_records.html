@@ -11,7 +11,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Billing Management</title>
+    <title>Past Records</title>
 
     <!-- Fontfaces CSS-->
     <!--<link href="/css/font-face.css" rel="stylesheet" media="all">-->
@@ -219,63 +219,70 @@
             <div class="container">
 
                 <div class="col-lg-12 col-md-12">
-                    <h2 class="title-1 m-b-25 animated fadeInDown">Billing Management</h2>
+                    <h2 class="title-1 m-b-25 animated fadeInDown">Past Records</h2>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-lg-12 shadow p-3 mb-5 bg-white rounded">
 
-                                    <div id="section_dropdown_select">
 
-                                        <div class="float-left">
+                                    <div class="d-flex justify-content-center">
 
-                                            <div class="form-group row">
 
-                                                <label for="dropdown_device"
-                                                       class="col-sm-1 mx-3 col-form-label">Device: </label>
+                                        <label for="dropdown_device"
+                                               class="col-sm-1 mx-3 col-form-label">Device: </label>
 
-                                                <div class="col-sm-4">
-                                                    <select id="dropdown_device" class="form-control ">
-                                                        <option>Home-7845854</option>
-                                                        <option>Office-5854256</option>
-                                                    </select>
-                                                </div>
+                                        <div class="col-sm-3">
+                                            <select id="dropdown_device" class="form-control ">
+                                                <option>Home-7845854</option>
+                                                <option>Office-5854256</option>
+                                            </select>
+                                        </div>
 
-                                                <label for="dropdown_date"
-                                                       class="col-sm-1 mx-3 col-form-label">Date: </label>
+                                        <label for="dropdown_date"
+                                               class="col-sm-1 mx-3 col-form-label">Time Period: </label>
 
-                                                <div class="col-sm-4">
-                                                    <select id="dropdown_date"
-                                                            class="form-control">
-                                                        <option>April 2019</option>
-                                                        <option>March 2019</option>
-                                                        <option>February 2019</option>
-                                                        <option>January 2019</option>
-                                                        <option>December 2018</option>
-                                                    </select>
-                                                </div>
+                                        <div class="col-sm-3">
+                                            <select id="dropdown_date"
+                                                    class="form-control">
 
-                                            </div>
+                                                <option>1 Week</option>
+                                                <option>2 Weeks</option>
+                                                <option>3 Weeks</option>
+                                                <option>1 Month</option>
+                                                <option>2 Months</option>
+                                                <option>3 Months</option>
+                                                <option>6 Months</option>
+                                                <option>12 Months</option>
 
+                                            </select>
                                         </div>
 
 
-                                        <div class="float-right">
-                                            <button id="button_download_pdf" class="mx-2 btn btn-primary">Download
-                                            </button>
-
-                                            <button id="button_pay_bill" class="mx-2 btn btn-primary">Pay Bill</button>
-                                        </div>
+                                        <button id="button_create_case" class="mx-2 btn btn-primary">
+                                            Show
+                                        </button>
 
                                     </div>
+
                                 </div>
 
                             </div>
                         </div>
+
+
+                        <div class="col-md-9">
+                            <div class="au-card m-b-30">
+                                <div class="au-card-inner">
+                                    <h3 class="title-2 m-b-40">Past Usage</h3>
+                                    <canvas id="pastRecordsChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
-
 
         </div>
 
@@ -320,7 +327,7 @@
 <!--<script src="../public/js/main.js"></script>-->
 <!--Graphs Updater  -->
 <script src="../public/js/main.js"></script>
-<script src="../views/billing.js"></script>
+<script src="../views/past_records.js"></script>
 
 </body>
 </html>
