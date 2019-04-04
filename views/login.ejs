@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--suppress HtmlRequiredTitleElement -->
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Login</title>
+
+    <% include partials/head_css.ejs %>
+
+    <script>
+        new WOW().init();
+    </script>
+
+</head>
+
+<body class="animsition" style="background: #e5e5e5">
+
+<nav class="navbar navbar-expand-ms navbar-light bg-light ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/login">
+            <b><img src="/images/icon/favicon.jpg"
+                    alt="Gyankriti Logo" height="50" width="50"
+                    style="margin-right: 20px">Intelli Meter</b> </a>
+    </div>
+</nav>
+
+<div class="page-wrapper m-t-25">
+
+
+    <!-- PAGE CONTAINER-->
+    <div class="page-container-no-sidebar">
+
+
+        <!---- Action First End (More Functionality can be added here, if we extend this project)----->
+
+        <!--<br>-->
+        <div class="container">
+
+            <div class="col-lg-12 col-md-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="au-card m-b-30 ">
+                            <div class="au-card-inner">
+                                <h3 class="title-2 m-b-40 text-center">Login</h3>
+
+                                <div class="mx-2" id="form_login">
+
+                                    <div class="d-flex justify-content-center form-group row">
+                                        <label for="input_email"
+                                               class="text-center col-sm-3 col-form-label col-form-label-sm">Email: </label>
+
+                                        <div class="col-sm-5">
+                                            <input type="email" id="input_email"
+                                                   class="form-control form-control-sm input-rounded"
+                                                   placeholder="Ex. user@email.com">
+                                        </div>
+                                    </div>
+
+                                    <didashbv class="d-flex justify-content-center form-group row">
+                                        <label for="input_password"
+                                               class="text-center col-sm-3 col-form-label col-form-label-sm">Password: </label>
+
+                                        <div class="col-sm-5">
+                                            <input type="password" id="input_password"
+                                                   class="form-control form-control-sm input-rounded"
+                                                   placeholder="Password">
+                                        </div>
+                                    </didashbv>
+
+
+                                    <div class="d-flex justify-content-center form-group my-4">
+                                        <button id="button_login" class=" btn btn-primary">
+                                            Login
+                                        </button>
+                                    </div>
+
+                                    <div class="col mx-2">
+                                        <a class="float-left" href="/registration">New User?</a>
+
+                                        <a class="float-right" href="/forgot">Forgot password?</a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!--- Action Second Section End (More Functionality can be added here, if we extend this project)---->
+
+                <% include partials/copyright.ejs %>
+
+                <!-- END MAIN CONTENT-->
+                <!-- END PAGE CONTAINER-->
+            </div>
+        </div>
+    </div>
+</div>
+<% include partials/js_bottom.ejs %>
+
+<!-- Main JS-->
+<!--<script src="../public/js/main.js"></script>-->
+<!--Graphs Updater  -->
+<script src="login.js"></script>
+
+</body>
+</html>
+<!-- end document-->

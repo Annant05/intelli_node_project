@@ -34,7 +34,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 // url routing
-app.use('/', require('./routes/index_router'));
+app.use('/', require('./routes/main_router'));
 
 console.log('\nServer-side code running');
 

@@ -27,3 +27,7 @@
 .display-none {
     display: none;
 }
+
+.input-rounded {
+    border-radius: 25px
+}

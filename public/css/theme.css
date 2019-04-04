@@ -40,10 +40,11 @@ Notes:	decreasing heading by 0.4em with every subsequent heading level
 /*                   GENERIC                           */
 /*-----------------------------------------------------*/
 /* ----- Normalize ----- */
-.fun_box{
-    margin-top:15%;
+.fun_box {
+    margin-top: 15%;
     padding-bottom: 26%;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -286,6 +287,10 @@ section {
     padding-left: 300px;
 }
 
+.page-container-no-sidebar {
+    background: #e5e5e5;
+}
+
 @media (max-width: 991px) {
     .page-container {
         position: relative;
@@ -328,7 +333,8 @@ section {
 .page-content--bge5 {
     background: #8fedfe;
 }
-login_bcg{
+
+login_bcg {
     background: url(1px.png) repeat-y;
     background-size: 60% auto;
     margin-top: 10%;
@@ -336,13 +342,14 @@ login_bcg{
     background-image: url(../images/cloudcomputing.gif);
     height: 100vh;
 }
+
 .login-wrap {
     max-width: 540px;
     padding-top: 8vh;
     margin: 0 auto;
 }
 
-.login_background{
+.login_background {
     background: url(1px.png) repeat-y;
     background-size: 50% auto;
     width: 100%;
@@ -961,7 +968,7 @@ login_bcg{
 .rs-select2--light .select2-container--open .select2-dropdown,
 .rs-select2--trans .select2-container--open .select2-dropdown {
     font-size: 14px;
-    box-shadow: 0px 2px 15px 3px rgba(0,0,0,0.1);
+    box-shadow: 0px 2px 15px 3px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -970,7 +977,7 @@ login_bcg{
     overflow: hidden;
 }
 
-.rs-select2--dark .select2-container--open .select2-dropdown .select2-results__option ,
+.rs-select2--dark .select2-container--open .select2-dropdown .select2-results__option,
 .rs-select2--trans .select2-container--open .select2-dropdown .select2-results__option,
 .rs-select2--light .select2-container--open .select2-dropdown .select2-results__option {
     padding: 8px 16px;
@@ -984,10 +991,9 @@ login_bcg{
 .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
- }
+}
 
 .rs-select2--border .select2-container--default .select2-selection--single,
-
 .rs-select2--dark2 .select2-container--default .select2-selection--single {
     background: #555;
 }
@@ -1500,9 +1506,9 @@ login_bcg{
 }
 
 .account-dropdown .info .content .name {
-    line-height: -webkit-calc(20/16);
-    line-height: -moz-calc(20/16);
-    line-height: calc(20/16);
+    line-height: -webkit-calc(20 / 16);
+    line-height: -moz-calc(20 / 16);
+    line-height: calc(20 / 16);
 }
 
 .account-dropdown .info .content .name a {
@@ -1518,9 +1524,9 @@ login_bcg{
 .account-dropdown .info .content .email {
     font-size: 13px;
     color: #999;
-    line-height: -webkit-calc(20/13);
-    line-height: -moz-calc(20/13);
-    line-height: calc(20/13);
+    line-height: -webkit-calc(20 / 13);
+    line-height: -moz-calc(20 / 13);
+    line-height: calc(20 / 13);
 }
 
 .account-dropdown:after {
@@ -1916,9 +1922,9 @@ login_bcg{
 }
 
 .mess__title p, .email__title p, .notifi__title p {
-    line-height: -webkit-calc(29/14);
-    line-height: -moz-calc(29/14);
-    line-height: calc(29/14);
+    line-height: -webkit-calc(29 / 14);
+    line-height: -moz-calc(29 / 14);
+    line-height: calc(29 / 14);
     font-size: 14px;
     color: #808080;
 }
@@ -1980,9 +1986,9 @@ login_bcg{
 .mess__item .content p {
     font-size: 14px;
     color: #555;
-    line-height: -webkit-calc(24/14);
-    line-height: -moz-calc(24/14);
-    line-height: calc(24/14);
+    line-height: -webkit-calc(24 / 14);
+    line-height: -moz-calc(24 / 14);
+    line-height: calc(24 / 14);
     margin-bottom: 4px;
 }
 
@@ -2191,7 +2197,7 @@ login_bcg{
     -moz-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    border-bottom: 1px  solid #f2f2f2;
+    border-bottom: 1px solid #f2f2f2;
 }
 
 .account2 .name {
@@ -3159,24 +3165,24 @@ login_bcg{
 }
 
 .overview-item--c1 {
-  background: #DA22FF;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #9733EE, #DA22FF);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, rgba(135, 31, 226, 0.9), rgba(218, 34, 255, 0.9)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #DA22FF; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #9733EE, #DA22FF); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, rgba(135, 31, 226, 0.9), rgba(218, 34, 255, 0.9)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 
 }
 
 .overview-item--c2 {
-   background: #4776E6;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #8E54E9, #4776E6);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, rgba(100, 27, 214, 0.9), rgba(71, 118, 230, 0.9)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #4776E6; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #8E54E9, #4776E6); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, rgba(100, 27, 214, 0.9), rgba(71, 118, 230, 0.9)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 
 .overview-item--c3 {
-   background: #FF512F;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #F09819, #FF512F);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, rgba(240, 152, 25, 0.9), rgba(255, 81, 47, 0.9)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #FF512F; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F09819, #FF512F); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, rgba(240, 152, 25, 0.9), rgba(255, 81, 47, 0.9)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 
@@ -3872,7 +3878,7 @@ background: linear-gradient(to right, rgba(240, 152, 25, 0.9), rgba(255, 81, 47,
 }
 
 .task-progress {
-    border: 1px solid  #e5e5e5;
+    border: 1px solid #e5e5e5;
     background: #fff;
     padding: 40px;
     padding-top: 42px;
@@ -4759,9 +4765,9 @@ background: linear-gradient(to right, rgba(240, 152, 25, 0.9), rgba(255, 81, 47,
 .copyright p {
     font-size: 14px;
     color: #666;
-    line-height: -webkit-calc(24/14);
-    line-height: -moz-calc(24/14);
-    line-height: calc(24/14);
+    line-height: -webkit-calc(24 / 14);
+    line-height: -moz-calc(24 / 14);
+    line-height: calc(24 / 14);
 }
 
 /* ----- Breadcrumb ----- */
@@ -5324,7 +5330,7 @@ background: linear-gradient(to right, rgba(240, 152, 25, 0.9), rgba(255, 81, 47,
 }
 
 .switch.switch-text .switch-label::before,
-  .switch.switch-text .switch-label::after {
+.switch.switch-text .switch-label::after {
     position: absolute;
     top: 50%;
     width: 50%;
@@ -5470,7 +5476,7 @@ background: linear-gradient(to right, rgba(240, 152, 25, 0.9), rgba(255, 81, 47,
 }
 
 .switch.switch-icon .switch-label::before,
-  .switch.switch-icon .switch-label::after {
+.switch.switch-icon .switch-label::after {
     position: absolute;
     top: 50%;
     width: 50%;

@@ -39,14 +39,14 @@ const usersTable = {
             TableName: this.TABLE_NAME,
             AttributeDefinitions: [
                 {
-                    AttributeName: "uid",  // Primary key
+                    AttributeName: "user_email",  // Primary key
                     AttributeType: "S"
                 },
 
             ],
             KeySchema: [
                 {
-                    AttributeName: "uid",
+                    AttributeName: "user_email",
                     KeyType: "HASH"
                 },
 
@@ -103,6 +103,42 @@ const devicesTable = {
 };
 
 
+const alertsTable = {
+    TABLE_NAME: config.TABLE_ALARMS,
+    createAlertsTable: async function () {
+        const params = {
+            TableName: this.TABLE_NAME,
+            AttributeDefinitions: [
+                {
+                    AttributeName: "alarm_uid",  // Primary key
+                    AttributeType: "S"
+                },
+
+            ],
+            KeySchema: [
+                {
+                    AttributeName: "alarm_uid",
+                    KeyType: "HASH"
+                },
+
+            ],
+            ProvisionedThroughput: {
+                ReadCapacityUnits: 5,
+                WriteCapacityUnits: 5
+            }
+        };
+
+        await dynamodb.createTable(params, (err, data) => {
+            if (err) console.log(err, err.stack); // an error occurred
+            else console.log(data);
+        });
+
+        console.log("The table are listed \n");
+        basicDynamoTableFunctions.listTables();
+    }
+};
+
+
 const s3Storage = {
     BUCKET_NAME: config.BUCKET_NAME,
     createS3Bucket: async function createS3BucketToStoreImages() {
@@ -132,6 +168,7 @@ const s3Storage = {
 
 // devicesTable.createDevicesTable();
 // usersTable.createUsersTable();
+// alertsTable.createAlertsTable();
 
 // s3Storage.createS3Bucket();
 

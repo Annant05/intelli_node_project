@@ -9,6 +9,9 @@ function documentReady() {
     initializeUsagePieChart();
     initializeCostBarChart();
 
+    // temp code
+    // const expiresTime = {expires: 1};
+    // $.cookie('user_email', 'annantg05@gmail.com', expiresTime);
 }
 
 function initializeUsagePieChart() {

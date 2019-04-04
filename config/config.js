@@ -21,6 +21,8 @@ const msg91_config = {
 module.exports = {
     TABLE_USERS: "intelli_users",
     TABLE_DEVICES: "intelli_devices",
+    TABLE_ALARMS: "intelli_alarms",
+
     BUCKET_NAME: "intelli2019",
 
     getAWS_JSONCredentials: () => {

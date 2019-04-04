@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--suppress HtmlRequiredTitleElement -->
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Registration</title>
+
+    <!-- Fontfaces CSS-->
+    <!--<link href="/css/font-face.css" rel="stylesheet" media="all">-->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+          rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          media="all">
+
+    <!-- /vendor CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/css/animsition.min.css" rel="stylesheet"
+          media="all">
+    <!--<link href="../public/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.1.3/hamburgers.min.css" rel="stylesheet"
+          media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/css/perfect-scrollbar.min.css"
+          rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="../public/css/theme.css" rel="stylesheet" media="all">
+    <link href="../public/css/custom.css" rel="stylesheet" media="all">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+
+    <!--// include jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+    <script>
+        new WOW().init();
+    </script>
+
+</head>
+
+<body class="animsition" style="background: #e5e5e5">
+
+<nav class="navbar navbar-expand-ms navbar-light bg-light ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/login">
+            <b><img src="../public/images/icon/favicon.jpg"
+                    alt="Gyankriti Logo" height="50" width="50"
+                    style="margin-right: 20px">Intelli Meter</b> </a>
+    </div>
+</nav>
+
+<div class="page-wrapper m-t-25">
+
+
+    <!-- PAGE CONTAINER-->
+    <div class="page-container-no-sidebar">
+
+
+        <!---- Action First End (More Functionality can be added here, if we extend this project)----->
+
+        <!--<br>-->
+        <div class="container">
+
+            <div class="col-lg-12 col-md-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="au-card m-b-30 ">
+                            <div class="au-card-inner">
+                                <h3 class="title-2 m-b-40 text-center">Registration</h3>
+
+                                <div class="mx-2" id="form_login">
+
+                                    <div class="d-flex justify-content-center form-group row">
+                                        <label for="input_full_name"
+                                               class="text-center col-sm-4 col-form-label col-form-label-sm">
+                                            Full Name: </label>
+
+                                        <div class="col-sm-5">
+                                            <input type="text" id="input_full_name"
+                                                   class="form-control form-control-sm"
+                                                   placeholder="Ex. Mary Doe">
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center form-group row">
+                                        <label for="input_email"
+                                               class="text-center col-sm-4 col-form-label col-form-label-sm">Email: </label>
+
+                                        <div class="col-sm-5">
+                                            <input type="email" id="input_email"
+                                                   class="form-control form-control-sm"
+                                                   placeholder="Ex. user@email.com">
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center form-group row">
+                                        <label for="input_mobile_no"
+                                               class="text-center col-sm-4 col-form-label col-form-label-sm">
+                                            Mobile No: </label>
+
+                                        <div class="col-sm-5">
+                                            <input type="text" id="input_mobile_no"
+                                                   class="form-control form-control-sm"
+                                                   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
+                                                   onKeyDown="if(this.value.length===10 && event.keyCode!==8) return false;"
+                                                   placeholder="Ex. 9876543210">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="d-flex justify-content-center form-group row">
+                                        <label for="input_address"
+                                               class="text-center col-sm-4 col-form-label col-form-label-sm">
+                                            Address: </label>
+
+                                        <div class="col-sm-5">
+                                            <input type="text" id="input_address"
+                                                   class="form-control form-control-sm"
+                                                   placeholder="Ex. Sh 52, Near ABC hospital , Indore">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="d-flex justify-content-center form-group row">
+                                        <label for="input_city"
+                                               class="text-center col-sm-4 col-form-label col-form-label-sm">
+                                            City: </label>
+
+                                        <div class="col-sm-5">
+                                            <input type="text" id="input_city"
+                                                   class="form-control form-control-sm"
+                                                   placeholder="Ex. Indore">
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center form-group row">
+                                        <label for="input_pincode"
+                                               class="text-center col-sm-4 col-form-label col-form-label-sm">
+                                            Pincode: </label>
+
+                                        <div class="col-sm-5">
+                                            <input type="text" id="input_pincode"
+                                                   class="form-control form-control-sm"
+                                                   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
+                                                   onKeyDown="if(this.value.length===6 && event.keyCode!==8) return false;"
+                                                   placeholder="Ex. 452001">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="d-flex justify-content-center form-group row">
+                                        <label for="input_password"
+                                               class="text-center col-sm-4 col-form-label col-form-label-sm">Password: </label>
+
+                                        <div class="col-sm-5">
+                                            <input type="password" id="input_password"
+                                                   class="form-control form-control-sm"
+                                                   placeholder="Password">
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center form-group row">
+                                        <label for="input_confirm_password"
+                                               class="text-center col-sm-4 col-form-label col-form-label-sm">
+                                            Confirm Password: </label>
+
+                                        <div class="col-sm-5">
+                                            <input type="password" id="input_confirm_password"
+                                                   class="form-control form-control-sm"
+                                                   placeholder="Password">
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center form-group my-4">
+                                        <button id="button_register" class=" btn btn-primary">
+                                            Register
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!--- Action Second Section End (More Functionality can be added here, if we extend this project)---->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="copyright">
+                            <p>Developed by Team TAG | Intelli Meter</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+    </div>
+</div>
+<!-- Jquery JS-->
+<!--<script src="/vendor/jquery-3.2.1.min.js"></script>-->
+<!-- Bootstrap JS-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/esm/popper.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- /vendor JS       -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/js/animsition.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-progressbar/0.9.0/bootstrap-progressbar.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js">
+</script>
+
+
+<!-- Main JS-->
+<!--<script src="../public/js/main.js"></script>-->
+<!--Graphs Updater  -->
+<script src="../public/js/main.js"></script>
+<script src="../views/registration.js"></script>
+
+</body>
+</html>
+<!-- end document-->

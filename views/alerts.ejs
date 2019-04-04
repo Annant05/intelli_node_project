@@ -88,39 +88,15 @@
                                                 <th scope="col">State</th>
                                                 <th scope="col">Threshold(KWh)
                                                 </th>
-                                                <th scope="col">Config Status</th>
+                                                <th scope="col">Activation Status</th>
 
                                             </tr>
                                             </thead>
+
                                             <tbody id="table_alerts_body">
 
-                                            <tr>
-                                                <td> Home 50%
-                                                </td>
-
-                                                <td>Home - 78456598</td>
-                                                <td>
-                                                    <span class="role alarm-ok">OK</span>
-                                                </td>
-                                                <td>50</td>
-                                                <td>Disabled</td>
-
-                                            </tr>
-
-                                            <tr>
-                                                <td>Home 80%</td>
-
-                                                <td>Home - 78456598</td>
-                                                <td>
-                                                    <span class="role alarm-alert">Alert</span>
-                                                </td>
-                                                <td>80</td>
-                                                <td>Enabled</td>
-
-                                            </tr>
-
-
                                             </tbody>
+
                                         </table>
                                     </div>
                                 </div>
@@ -165,8 +141,8 @@
                                            class="col-sm-4 col-form-label col-form-label-sm">Attach To : </label>
                                     <div class="col-sm-6">
                                         <select id="attach_to" class="form-control form-control-sm">
-                                            <option>Home-4848465</option>
-                                            <option>Office-6842628</option>
+                                            <option value="4848465">Home-4848465</option>
+                                            <option value="6842628">Office-6842628</option>
                                         </select>
                                     </div>
                                 </div>
@@ -196,16 +172,16 @@
                                 <div class="form-group row">
                                     <label for="input_alarm_for_time"
                                            class="col-sm-4 col-form-label col-form-label-sm">For a time of </label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         <input type="number" id="input_alarm_for_time" min="1" max="10000"
                                                class="form-control form-control-sm"
                                                placeholder="">
                                     </div>
 
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <select id="input_alarm_time_unit" class="form-control form-control-sm">
-                                            <option>Month</option>
-                                            <option>Day</option>
+                                            <option value="month">Month</option>
+                                            <option value="day"> Day</option>
                                         </select>
                                     </div>
                                 </div>
