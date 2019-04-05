@@ -26,3 +26,19 @@ function append_options_to_dropdown(dropdown_selector, options) {
             `<option value="${((option.toString()))}">${option}</option>`);
     });
 }
+
+
+// function getDropdownWithOther(dropdown_selector, field_other_answer) {
+//
+//     let valDropDown = getValFromDropdown(dropdown_selector);
+//     if (valDropDown === "Other") {
+//         return {
+//             value: valDropDown,
+//             value_other: (field_other_answer.val()).trim()
+//         };
+//     } else {
+//         return {
+//             value: valDropDown
+//         };
+//     }
+// }

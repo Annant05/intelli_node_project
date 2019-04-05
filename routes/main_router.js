@@ -43,7 +43,7 @@ router.post('/show-intelli-device', async function (req, res) {
         console.log(JSON.stringify(user_email));
         // console.log(JSON.stringify(req.body.new_admission_data));
         await dynamoFunctions.getUserIntelliDevices(user_email, (intelli_devices_array, isSaved) => {
-            console.log("is login credentials found in the dynamodb 'intelli_users' table: " + isSaved);
+            console.log("show registered devices in the dynamodb 'intelli_devices' table: " + isSaved);
             console.log(intelli_devices_array);
             res.send({intelli_devices_array: intelli_devices_array.Items, success: isSaved});
         });
@@ -70,7 +70,7 @@ router.post('/new-intelli-device', async function (req, res) {
         console.log(JSON.stringify(newDeviceJson));
         // console.log(JSON.stringify(req.body.new_admission_data));
         await dynamoFunctions.createNewIntelliDevice(newDeviceJson, (isSaved) => {
-            console.log("is login credentials found in the dynamodb 'intelli_users' table: " + isSaved);
+            console.log("register new device in the dynamodb 'intelli_devices' table: " + isSaved);
             // console.log(newDeviceJson);
             res.send({/*intelli_devices_array: intelli_devices_array, */success: isSaved});
         });
@@ -200,5 +200,26 @@ router.get('/support', function (req, res) {
     res.render('support') //, {TITLE: TITLE});
 });
 
+
+router.post('/create-support-case', async function (req, res) {
+
+    console.log("\nPOST: '/new-intelli-device' = add new device to the db.");
+    const newCaseJson = req.body.newCaseJson;
+
+    try {
+        console.log(JSON.stringify(newCaseJson));
+        // console.log(JSON.stringify(req.body.new_admission_data));
+        await dynamoFunctions.createNewSupportCase(newCaseJson, (isSaved) => {
+            console.log("is case created in the dynamodb 'intelli_support_case' table: " + isSaved);
+            // console.log(newDeviceJson);
+            res.send({/*intelli_devices_array: intelli_devices_array, */success: isSaved});
+        });
+
+    } catch (e) {
+        console.log("exception e : " + e);
+        res.send({success: false});
+    }
+
+});
 
 module.exports = router;

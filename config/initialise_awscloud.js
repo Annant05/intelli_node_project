@@ -163,8 +163,44 @@ const s3Storage = {
 
 };
 
+const supportTable = {
+    TABLE_NAME: config.TABLE_SUPPORT_CASES,
+    createSupportCasesTable: async function () {
+        const params = {
+            TableName: this.TABLE_NAME,
+            AttributeDefinitions: [
+                {
+                    AttributeName: "case_uid",  // Primary key
+                    AttributeType: "S"
+                },
 
-//
+            ],
+            KeySchema: [
+                {
+                    AttributeName: "case_uid",
+                    KeyType: "HASH"
+                },
+            ],
+
+            ProvisionedThroughput: {
+                ReadCapacityUnits: 5,
+                WriteCapacityUnits: 5
+            }
+        };
+
+        await dynamodb.createTable(params, (err, data) => {
+            if (err) console.log(err, err.stack); // an error occurred
+            else console.log(data);
+        });
+
+        console.log("The table are listed \n");
+        basicDynamoTableFunctions.listTables();
+    }
+
+};
+
+
+// supportTable.createSupportCasesTable();
 
 // devicesTable.createDevicesTable();
 // usersTable.createUsersTable();

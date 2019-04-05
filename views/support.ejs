@@ -51,7 +51,7 @@
 
                                         <div class="form-group row">
                                             <label for="dropdown_case_category"
-                                                   class="col-sm-2 col-form-label col-form-label-sm">Category </label>
+                                                   class="col-sm-2 col-form-label col-form-label-sm">Category: </label>
 
                                             <div class="col-sm-3">
                                                 <select id="dropdown_case_category"
@@ -59,15 +59,15 @@
                                                     <option value="billing">Billing Support</option>
                                                     <option value="account">Account Issues</option>
                                                     <option value="upgrade">Upgrade Issue</option>
-                                                    <option value="new">New Connection Query</option>
-                                                    <option value="remove">Remove Existing Connection</option>
+                                                    <option value="new_conn">New Connection Query</option>
+                                                    <option value="remove_conn">Remove Existing Connection</option>
                                                     <option value="other">Other Issues</option>
                                                 </select>
 
                                             </div>
 
                                             <div class="col-sm-3">
-                                                <input type="text" id="input_other_category"
+                                                <input type="text" id="input_other_case_category"
                                                        class="form-control form-control-sm"
                                                        placeholder="Other" disabled>
                                             </div>
@@ -75,31 +75,24 @@
                                         </div>
 
 
-                                        <!--<div class="col-sm-4">-->
-                                        <!--<select id="input_alarm_time_unit" class="form-control form-control-sm">-->
-                                        <!--<option>Month</option>-->
-                                        <!--<option>Day</option>-->
-                                        <!--</select>-->
-                                        <!--</div>-->
-
                                         <div class="form-group row">
                                             <label for="dropdown_case_severity"
-                                                   class="col-sm-2 col-form-label col-form-label-sm">Severity </label>
+                                                   class="col-sm-2 col-form-label col-form-label-sm">Severity: </label>
                                             <div class="col-sm-6">
 
                                                 <select id="dropdown_case_severity"
                                                         class="form-control form-control-sm">
-                                                    <option>Low</option>
-                                                    <option>Normal</option>
-                                                    <option>High</option>
-                                                    <option>Critical</option>
+                                                    <option value="low">Low</option>
+                                                    <option value="normal">Normal</option>
+                                                    <option value="high">High</option>
+                                                    <option value="critical">Critical</option>
                                                 </select>
                                             </div>
                                         </div>
 
                                         <div class="form-group row ">
                                             <label for="input_case_subject"
-                                                   class="col-sm-2 col-form-label col-form-label-sm">Subject </label>
+                                                   class="col-sm-2 col-form-label col-form-label-sm">Subject: </label>
                                             <div class="col-sm-6">
                                                 <input type="text" id="input_case_subject"
                                                        class="form-control form-control-sm"
@@ -109,7 +102,7 @@
 
                                         <div class="form-group row">
                                             <label for="input_textarea_description"
-                                                   class="col-sm-2 col-form-label col-form-label-sm">Description
+                                                   class="col-sm-2 col-form-label col-form-label-sm">Description:
                                             </label>
                                             <div class="col-sm-6">
                                                 <textarea id="input_textarea_description"
@@ -120,7 +113,7 @@
 
                                         <div class="form-group row">
                                             <label for="input_case_file_attachment"
-                                                   class="col-sm-2 col-form-label col-form-label-sm">Attachments
+                                                   class="col-sm-2 col-form-label col-form-label-sm">Attachments:
                                             </label>
                                             <div class="col-sm-6">
                                                 <form id="form_attachment" enctype="multipart/form-data">
@@ -133,22 +126,22 @@
 
                                         <div class="form-group row">
                                             <label for="dropdown_case_contact_language"
-                                                   class="col-sm-2 col-form-label col-form-label-sm">Support Language
+                                                   class="col-sm-2 col-form-label col-form-label-sm">Support Language:
                                             </label>
                                             <div class="col-sm-6">
 
                                                 <select id="dropdown_case_contact_language"
                                                         class="form-control form-control-sm">
-                                                    <option>English</option>
-                                                    <option>हिंदी</option>
+                                                    <option value="english">English</option>
+                                                    <option value="hindi">हिंदी</option>
                                                 </select>
                                             </div>
                                         </div>
 
-                                        <div class="form-group row">
 
+                                        <div class="form-group row">
                                             <label for="dropdown_case_contact_language"
-                                                   class="col-sm-2 col-form-label col-form-label-sm">Contact Method
+                                                   class="col-sm-2 col-form-label col-form-label-sm">Contact Method:
                                             </label>
 
 

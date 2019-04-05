@@ -10,6 +10,7 @@ const docClientDynamo = new AWS.DynamoDB.DocumentClient();
 const TABLE_ALARMS = config.TABLE_ALARMS;
 const TABLE_USERS = config.TABLE_USERS;
 const TABLE_DEVICES = config.TABLE_DEVICES;
+const TABLE_SUPPORT_CASES = config.TABLE_SUPPORT_CASES;
 
 
 // Object with all the database support functions.
@@ -58,6 +59,41 @@ const databaseFunctions = {
     //     }
     // },
 
+
+    createNewSupportCase: async function addNewCaseToTheSupportTable(newCaseJson, stateCallback) {
+        console.log("\nFile: support_files/dynamoFunctions calling function 'createNewSupportCase()'  Argument Passed : ");
+
+        newCaseJson['time_of_insertion'] = `${(Math.round((new Date()).getTime() / 1000)).toString()}`;
+        newCaseJson['case_uid'] = `${newCaseJson.user_email}_${newCaseJson.time_of_insertion}`;
+        newCaseJson['case_status'] = `pending_support_response`;
+
+        const params = {
+            TableName: TABLE_SUPPORT_CASES,
+            Item: newCaseJson
+        };
+
+        console.log("\nparams for function : put(params) : " + JSON.stringify(params));
+
+        try {
+            await docClientDynamo.put(params, (err, data) => {
+                if (err) {
+                    console.log("\nThere was some error ", err, err.stack);
+                    stateCallback(false);
+
+                }// an error occurred
+                else {
+                    console.log("\nData saved ", data);
+                    stateCallback(true);
+                }
+            });
+
+        } catch (err) {
+            console.log("\nError :  " + err);
+            stateCallback(false);
+        }
+        // console.log("\nisSaved before return ", isSaved);
+
+    },
 
 
     getUserIntelliDevices: async function getUserIntelliDevicesFromDevicesTable(user_email, sendDataInCallback) {

@@ -22,6 +22,7 @@ module.exports = {
     TABLE_USERS: "intelli_users",
     TABLE_DEVICES: "intelli_devices",
     TABLE_ALARMS: "intelli_alarms",
+    TABLE_SUPPORT_CASES: "intelli_support_cases",
 
     BUCKET_NAME: "intelli2019",
 
