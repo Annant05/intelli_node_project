@@ -39,8 +39,48 @@ function documentReady() {
     attachTableTriggers();
     attachButtonsTriggers();
     displayTableFromServerData();
+    appendToAlertsDropdown();
 }
 
+function appendToAlertsDropdown() {
+
+    function append_options_to_dropdown_with_text(dropdown_selector, options) {
+
+        console.log('appending options to create alerts modal');
+
+        for (let i = 0; i < options.length; i++) {
+            let val_ivrs = (options[i].device_ivrs).toString();
+            let text_name = `${(options[i].device_name).toString()} (${val_ivrs})`;
+
+            dropdown_selector.append(`<option value="${val_ivrs}">${text_name}</option>`);
+        }
+
+        // options.forEach(function (option) {
+        //     dropdown_selector.append(
+        //         `<option value="${((option.toString()))}">${option}</option>`);
+        // });
+    }
+
+
+    $.ajax({
+        url: '/show-intelli-device',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({user_email: $.cookie('user_email')}),
+        success: function (response) {
+            console.log(response.success);
+            if (response.success) {
+                // alert("success intelli devices");
+                append_options_to_dropdown_with_text(attach_to, response.intelli_devices_array)
+                // append_options_to_dropdown(attach_to, response.intelli_devices_array);
+            } else {
+                alert("There was some error in saving the information.")
+            }
+        }
+    });
+
+
+}
 
 function attachTableTriggers() {
     // definitions
@@ -84,7 +124,7 @@ function attachButtonsTriggers() {
 function createNewAlarm() {
 
     let createAlarmJson = {
-        alarm_creator: $.cookie('user_email'),
+        user_email: $.cookie('user_email'),
         alarm_name: getValFromTextBox(input_alarm_name),
         alarm_attach_to: getValFromDropdown(attach_to),
         alarm_sms_no: getValFromTextBox(input_alarm_sms_no),
@@ -101,8 +141,9 @@ function createNewAlarm() {
         success: function (response) {
             console.log(response.success);
             if (response.success) {
-                alert('new alarm created');
+                // alert('new alarm created');
                 modal_create_alert.modal('hide');
+                displayTableFromServerData();
             } else {
                 alert("There was some error in saving the information.")
             }
@@ -113,6 +154,9 @@ function createNewAlarm() {
 
 
 function displayTableFromServerData() {
+
+    table_alerts_body.children().remove();
+
     let alarms_array = [];
 
     function renderTableArray() {

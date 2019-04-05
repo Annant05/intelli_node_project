@@ -22,9 +22,57 @@ router.post('/login', async function (req, res) {
     try {
         console.log(JSON.stringify(loginJson));
         // console.log(JSON.stringify(req.body.new_admission_data));
-        await dynamoFunctions.checkUser(loginJson, (isSaved) => {
+        await dynamoFunctions.checkUser(loginJson, (userInfoJson, isSaved) => {
             console.log("is login credentials found in the dynamodb 'intelli_users' table: " + isSaved);
-            res.send({success: isSaved});
+            res.send({userInfoJson: userInfoJson, success: isSaved});
+        });
+
+    } catch (e) {
+        console.log("exception e : " + e);
+        res.send({success: false});
+    }
+
+});
+
+router.post('/show-intelli-device', async function (req, res) {
+
+    console.log("\nPOST: '/show-intelli-device' = send a list of devices from db using user email.");
+    const user_email = req.body.user_email;
+
+    try {
+        console.log(JSON.stringify(user_email));
+        // console.log(JSON.stringify(req.body.new_admission_data));
+        await dynamoFunctions.getUserIntelliDevices(user_email, (intelli_devices_array, isSaved) => {
+            console.log("is login credentials found in the dynamodb 'intelli_users' table: " + isSaved);
+            console.log(intelli_devices_array);
+            res.send({intelli_devices_array: intelli_devices_array.Items, success: isSaved});
+        });
+
+    } catch (e) {
+        console.log("exception e : " + e);
+        res.send({success: false});
+    }
+
+});
+
+router.get('/new-intelli-device', function (req, res) {
+    console.log("GET: '/new-intelli-device' = Render Web-Page");
+    res.render('new_intelli_device') //, {TITLE: TITLE});
+});
+
+
+router.post('/new-intelli-device', async function (req, res) {
+
+    console.log("\nPOST: '/new-intelli-device' = add new device to the db.");
+    const newDeviceJson = req.body.newDeviceJson;
+
+    try {
+        console.log(JSON.stringify(newDeviceJson));
+        // console.log(JSON.stringify(req.body.new_admission_data));
+        await dynamoFunctions.createNewIntelliDevice(newDeviceJson, (isSaved) => {
+            console.log("is login credentials found in the dynamodb 'intelli_users' table: " + isSaved);
+            // console.log(newDeviceJson);
+            res.send({/*intelli_devices_array: intelli_devices_array, */success: isSaved});
         });
 
     } catch (e) {
@@ -110,12 +158,12 @@ router.post('/create-alert', async (req, res) => {
 router.post('/show-alert', async (req, res) => {
     console.log("\nPOST: '/show-alert' = show alarm from db.");
 
-    const alarm_creator = req.body.user_email;
+    const user_email = req.body.user_email;
 
     try {
-        console.log(`alarm creator ${alarm_creator}`);
+        console.log(`alarm creator ${user_email}`);
 
-        await dynamoFunctions.getCurrentAlarms(alarm_creator, (alarmItemsArray, isSuccess) => {
+        await dynamoFunctions.getCurrentAlarms(user_email, (alarmItemsArray, isSuccess) => {
             // console.log(JSON.stringify(alarmItemsArray));
             res.send({alarms_array: alarmItemsArray.Items, success: isSuccess});
         });

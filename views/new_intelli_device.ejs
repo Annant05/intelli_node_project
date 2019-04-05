@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--suppress HtmlRequiredTitleElement -->
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>New Device</title>
+
+    <% include partials/head_css.ejs %>
+
+    <script>
+        new WOW().init();
+    </script>
+
+</head>
+
+<body class="animsition">
+<div class="page-wrapper">
+
+    <% include partials/sidemenu.ejs %>
+
+    <!-- PAGE CONTAINER-->
+    <div class="page-container">
+
+        <% include partials/header_nav.ejs %>
+
+        <!-- MAIN CONTENT-->
+        <div class="main-content">
+
+            <!---- Action First End (More Functionality can be added here, if we extend this project)----->
+
+            <!--<br>-->
+            <div class="container">
+
+                <div class="col-lg-12 col-md-12">
+                    <h2 class="title-1 m-b-25 animated fadeInDown">Add Device</h2>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-lg-12 shadow p-3 mb-5 bg-white rounded">
+
+                                    <div class="mx-2" id="form_new_device">
+
+                                        <div class="form-group row">
+                                            <label for="input_device_ivrs"
+                                                   class="col-sm-2 col-form-label col-form-label-sm">Device IVRS:
+                                            </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" id="input_device_ivrs"
+                                                       class="form-control form-control-sm"
+                                                       oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
+                                                       onKeyDown="if(this.value.length===10 && event.keyCode!==8) return false;"
+                                                       placeholder="Ex. 6854523895">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="input_device_name"
+                                                   class="col-sm-2 col-form-label col-form-label-sm">Device
+                                                Name:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" id="input_device_name"
+                                                       class="form-control form-control-sm"
+                                                       placeholder="Ex. Home Device">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="input_device_address"
+                                                   class="col-sm-2 col-form-label col-form-label-sm">Installation
+                                                Address:
+                                            </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" id="input_device_address"
+                                                       class="form-control form-control-sm"
+                                                       placeholder="Ex. Sh25 ,ABC nagar ,Dewas">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <label for="input_device_city"
+                                                   class="col-sm-2 col-form-label col-form-label-sm">Installation City:
+                                            </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" id="input_device_city"
+                                                       class="form-control form-control-sm"
+                                                       placeholder="Ex. Indore">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="input_device_pincode"
+                                                   class="col-sm-2 col-form-label col-form-label-sm">Location Pincode:
+                                            </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" id="input_device_pincode"
+                                                       class="form-control form-control-sm"
+                                                       oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
+                                                       onKeyDown="if(this.value.length===6 && event.keyCode!==8) return false;"
+                                                       placeholder="Ex. 452010">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group d-flex justify-content-center">
+                                            <button id="button_add_device" class=" btn btn-primary">
+                                                Add Device
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <% include partials/copyright.ejs %>
+            </div>
+        </div>
+        <!-- END MAIN CONTENT-->
+
+    </div>
+    <!-- END PAGE CONTAINER-->
+
+
+</div>
+
+<% include partials/js_bottom.ejs %>
+
+<!-- Main JS-->
+<!--<script src="../public/js/main.js"></script>-->
+<!--Graphs Updater  -->
+<script src="new_intelli_device.js"></script>
+
+</body>
+</html>
+<!-- end document-->

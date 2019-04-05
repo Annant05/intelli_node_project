@@ -1,4 +1,3 @@
-
 (function ($) {
     // USE STRICT
     "use strict";
@@ -26,8 +25,6 @@
 
 
 })(jQuery);
-
-
 (function ($) {
     // USE STRICT
     "use strict";
@@ -43,7 +40,6 @@
     }
 
 })(jQuery);
-
 (function ($) {
     // USE STRICT
     "use strict";
@@ -169,3 +165,26 @@
     }
 
 })(jQuery);
+
+let user_full_name = null;
+let user_email = null;
+
+function documentReady() {
+    user_full_name = $('.user_full_name');
+    user_email = $('#user_email');
+
+
+    console.log("try to set name and email");
+    user_email.text($.cookie('user_email'));
+    user_full_name.text($.cookie('user_full_name'));
+
+}
+
+function clearCookies() {
+
+    $.removeCookie('user_email');
+    $.removeCookie('user_full_name');
+    window.location.replace('/login');
+}
+
+$(documentReady);

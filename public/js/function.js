@@ -19,3 +19,10 @@ function disableInputField(selector, isDisabled) {
     }
 
 }
+
+function append_options_to_dropdown(dropdown_selector, options) {
+    options.forEach(function (option) {
+        dropdown_selector.append(
+            `<option value="${((option.toString()))}">${option}</option>`);
+    });
+}

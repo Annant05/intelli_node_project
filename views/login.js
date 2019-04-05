@@ -31,7 +31,7 @@ function documentReady() {
 function sendLoginDataToServer(loginJson) {
 
     console.log('sending request to server');
-    
+
     $.ajax({
         url: '/login',
         method: 'POST',
@@ -41,8 +41,11 @@ function sendLoginDataToServer(loginJson) {
             console.log(response.success);
             if (response.success) {
 
+                console.log(response.userInfoJson);
+
                 const expiresTime = {expires: 1};
-                $.cookie('user_email', loginJson.user_email, expiresTime);
+                $.cookie('user_email', response.userInfoJson.user_email, expiresTime);
+                $.cookie('user_full_name', response.userInfoJson.user_full_name, expiresTime);
 
                 window.location.replace("/dashboard");
                 // modal_create_alert.modal('hide');

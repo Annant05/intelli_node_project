@@ -9,6 +9,8 @@ const docClientDynamo = new AWS.DynamoDB.DocumentClient();
 // Table For alerts.
 const TABLE_ALARMS = config.TABLE_ALARMS;
 const TABLE_USERS = config.TABLE_USERS;
+const TABLE_DEVICES = config.TABLE_DEVICES;
+
 
 // Object with all the database support functions.
 const databaseFunctions = {
@@ -22,6 +24,115 @@ const databaseFunctions = {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // New functions development
+
+    // getAlertsCountOfIntelliDevices: async function getAlertsAttacedToAnIntelliDevicesUsingDevicesTableAndAlertsTable(device_ivrs, sendDataInCallback) {
+    //
+    //     console.log("\nFile: support_files/dynamoStudent calling function 'getAlertsCountOfIntelliDevices()'");
+    //
+    //     let params = {
+    //         TableName: TABLE_DEVICES,
+    //         FilterExpression: '#str_user_email = :val_user_email',
+    //         ExpressionAttributeNames: {
+    //             "#str_user_email": "user_email",
+    //         },
+    //         ExpressionAttributeValues: {
+    //             ':val_user_email': user_email,
+    //         },
+    //         ProjectionExpression: "device_name, device_ivrs"
+    //     };
+    //
+    //     console.log("\nparams for function : scan(params) : " + JSON.stringify(params));
+    //
+    //     try {
+    //         await docClientDynamo.scan(params, (err, data) => {
+    //             if (err) {
+    //                 console.log(err, err.stack); // an error occurred
+    //                 sendDataInCallback(err, false);
+    //             } else {
+    //                 console.log(JSON.stringify(data.Count));
+    //                 sendDataInCallback(data, true);
+    //             }
+    //         });
+    //     } catch (err) {
+    //         console.log("\nError :  " + err);
+    //     }
+    // },
+
+
+
+    getUserIntelliDevices: async function getUserIntelliDevicesFromDevicesTable(user_email, sendDataInCallback) {
+
+        console.log("\nFile: support_files/dynamoStudent calling function 'getUserIntelliDevices()'");
+
+        let params = {
+            TableName: TABLE_DEVICES,
+            FilterExpression: '#str_user_email = :val_user_email',
+            ExpressionAttributeNames: {
+                "#str_user_email": "user_email",
+            },
+            ExpressionAttributeValues: {
+                ':val_user_email': user_email,
+            },
+            ProjectionExpression: "device_name, device_ivrs"
+        };
+
+        console.log("\nparams for function : scan(params) : " + JSON.stringify(params));
+
+        try {
+            await docClientDynamo.scan(params, (err, data) => {
+                if (err) {
+                    console.log(err, err.stack); // an error occurred
+                    sendDataInCallback(err, false);
+                } else {
+                    console.log(JSON.stringify(data.Count));
+                    sendDataInCallback(data, true);
+                }
+            });
+        } catch (err) {
+            console.log("\nError :  " + err);
+        }
+    },
+
+
+    createNewIntelliDevice: async function addIntelliDevicesToDevicesTable(newDeviceJson, stateCallback) {
+        console.log("\nFile: support_files/dynamoFunctions calling function 'createNewIntelliDevice()'  Argument Passed : ");
+
+        // create alarm uid using the data input
+        // newUserJson['alarm_uid'] = `${newUserJson.alarm_attach_to}_${newUserJson.alarm_threshold_val}_${newUserJson.alarm_for_time}_${newUserJson.alarm_time_unit}`;
+        // // add time of insertion to the data;
+        newDeviceJson['time_of_insertion'] = `${(Math.round((new Date()).getTime() / 1000)).toString()}`;
+
+        // newUserJson['alarm_activation_status'] = `enabled`;
+        // gyankritiDataObject['search_helper'] = `${gyankritiDataObject.standard}_${gyankritiDataObject.section}_${gyankritiDataObject.route}_${gyankritiDataObject.shift}`;
+
+        const params = {
+            TableName: TABLE_DEVICES,
+            Item: newDeviceJson
+        };
+
+        console.log("\nparams for function : put(params) : " + JSON.stringify(params));
+
+        try {
+            await docClientDynamo.put(params, (err, data) => {
+                if (err) {
+                    console.log("\nThere was some error ", err, err.stack);
+                    stateCallback(false);
+
+                }// an error occurred
+                else {
+                    console.log("\nData saved ", data);
+                    stateCallback(true);
+                }
+            });
+
+        } catch (err) {
+            console.log("\nError :  " + err);
+            stateCallback(false);
+        }
+        // console.log("\nisSaved before return ", isSaved);
+
+    },
+
 
     checkUser: async function checkUserCredentialsForLogin(loginJson, stateCallback) {
         console.log("\nFile: support_files/dynamoFunctions calling function 'checkUser()'  Argument Passed : ");
@@ -37,7 +148,7 @@ const databaseFunctions = {
                 ':val_user_email': loginJson.user_email,
                 ':val_user_password': loginJson.user_password
             },
-            // // ProjectionExpression: "standard, first_name, gyankriti_enrollment"
+            ProjectionExpression: "user_email, user_full_name"
         };
 
         console.log("\nparams for function : scan(params) : " + JSON.stringify(params));
@@ -46,15 +157,15 @@ const databaseFunctions = {
             await docClientDynamo.scan(params, (err, data) => {
                 if (err) {
                     console.log("\nThere was some error ", err, err.stack);
-                    stateCallback(false);
+                    stateCallback(err, false);
 
                 }// an error occurred
                 else {
                     console.log("\nUser recieved ", data.Count);
                     if (data.Count !== 0)
-                        stateCallback(true);
+                        stateCallback(data.Items[0], true);
                     else
-                        stateCallback(false);
+                        stateCallback(null, false);
                 }
             });
 
@@ -145,19 +256,19 @@ const databaseFunctions = {
 
 
     //* Function to get all the alarms using the alarm_creator from the database  */
-    getCurrentAlarms: async function getCurrentAlarmsUsingAlarmCreatorFromAlarmsTable(alarm_creator, sendDataInCallback) {
+    getCurrentAlarms: async function getCurrentAlarmsUsingAlarmCreatorFromAlarmsTable(user_email, sendDataInCallback) {
 
         console.log("\nFile: support_files/dynamoStudent calling function 'getCurrentAlarms()'");
 
 
         let params = {
             TableName: TABLE_ALARMS,
-            FilterExpression: '#str_alarm_creator = :val_alarm_creator',
+            FilterExpression: '#str_user_email = :val_user_email',
             ExpressionAttributeNames: {
-                "#str_alarm_creator": "alarm_creator",
+                "#str_user_email": "user_email",
             },
             ExpressionAttributeValues: {
-                ':val_alarm_creator': alarm_creator,
+                ':val_user_email': user_email,
             },
             // // ProjectionExpression: "standard, first_name, gyankriti_enrollment"
         };

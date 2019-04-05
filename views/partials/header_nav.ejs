@@ -20,7 +20,7 @@
                         <img src="/images/icon/profile_nav.png" alt="User 1"/>
                     </div>
                     <div class="content">
-                        <a class="js-acc-btn" href="#">User 1</a>
+                        <a class="js-acc-btn user_full_name" href="#"></a>
                     </div>
                     <div class="account-dropdown js-dropdown">
                         <div class="info clearfix">
@@ -31,9 +31,9 @@
                             </div>
                             <div class="content">
                                 <h5 class="name">
-                                    <a href="#">User 1</a>
+                                    <a href="#" class="user_full_name"> </a>
                                 </h5>
-                                <span class="email">user1@gmail.com</span>
+                                <span class="email" id="user_email"></span>
                             </div>
                         </div>
                         <div class="account-dropdown__body">
@@ -42,16 +42,13 @@
                                     <i class="zmdi zmdi-account"></i>Account</a>
                             </div>
                             <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-settings"></i>Setting</a>
-                            </div>
-                            <div class="account-dropdown__item">
-                                <a href="#">
-                                    <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                <a href="/new-intelli-device">
+                                    <i class="zmdi zmdi-plus-box"></i>Add Device</a>
                             </div>
                         </div>
+
                         <div class="account-dropdown__footer">
-                            <a href="/login">
+                            <a onclick="clearCookies();">
                                 <i class="zmdi zmdi-power"></i>Logout</a>
                         </div>
                     </div>

@@ -74,18 +74,18 @@ const devicesTable = {
             TableName: this.TABLE_NAME,
             AttributeDefinitions: [
                 {
-                    AttributeName: "device_uid",  // Primary key
+                    AttributeName: "device_ivrs",  // Primary key
                     AttributeType: "S"
                 },
 
             ],
             KeySchema: [
                 {
-                    AttributeName: "device_uid",
+                    AttributeName: "device_ivrs",
                     KeyType: "HASH"
                 },
-
             ],
+
             ProvisionedThroughput: {
                 ReadCapacityUnits: 5,
                 WriteCapacityUnits: 5
