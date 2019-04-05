@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const dynamoFunctions = require('../support_files/dynamo_functions');
+const sms_api = require('../support_files/sms_api');
 
 const TITLE = "Intelli Meter";
 
@@ -144,7 +145,13 @@ router.post('/create-alert', async (req, res) => {
         // console.log(JSON.stringify(req.body.new_admission_data));
         await dynamoFunctions.createNewAlarms(createAlarmJson, (isSaved) => {
             console.log("is Data Saved to the dynamodb 'intelli_alerts' table:  " + isSaved);
-            res.send({success: isSaved});
+            if (isSaved) {
+                let message = `SMS Alert Name-${createAlarmJson.alarm_name} enabled for IVRS-${createAlarmJson.alarm_attach_to} with threshold ${createAlarmJson.alarm_threshold_val} Units for a time period of ${createAlarmJson.alarm_for_time} ${createAlarmJson.alarm_time_unit} \n - Team Intelli Meter`;
+                sms_api.sendSMS(createAlarmJson.alarm_sms_no, message, (isSmsSent) => {
+                    res.send({success: isSmsSent});
+                });
+
+            }
         });
 
     } catch (e) {
@@ -161,7 +168,9 @@ router.post('/show-alert', async (req, res) => {
     const user_email = req.body.user_email;
 
     try {
-        console.log(`alarm creator ${user_email}`);
+        console.log(`
+                alarm
+                creator ${user_email}`);
 
         await dynamoFunctions.getCurrentAlarms(user_email, (alarmItemsArray, isSuccess) => {
             // console.log(JSON.stringify(alarmItemsArray));

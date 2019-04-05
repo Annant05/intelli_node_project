@@ -133,23 +133,28 @@ function createNewAlarm() {
         alarm_time_unit: getValFromDropdown(input_alarm_time_unit)
     };
 
-    $.ajax({
-        url: '/create-alert',
-        method: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({createAlarmJson: createAlarmJson}),
-        success: function (response) {
-            console.log(response.success);
-            if (response.success) {
-                // alert('new alarm created');
-                modal_create_alert.modal('hide');
-                displayTableFromServerData();
-            } else {
-                alert("There was some error in saving the information.")
-            }
-        }
-    });
+    if ((createAlarmJson.alarm_sms_no).length === 10) {
 
+
+        $.ajax({
+            url: '/create-alert',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({createAlarmJson: createAlarmJson}),
+            success: function (response) {
+                console.log(response.success);
+                if (response.success) {
+                    // alert('new alarm created');
+                    modal_create_alert.modal('hide');
+                    displayTableFromServerData();
+                } else {
+                    alert("There was some error in saving the information.")
+                }
+            }
+        });
+    } else {
+        alert('mobile no is not right');
+    }
 }
 
 

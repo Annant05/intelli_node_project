@@ -255,10 +255,10 @@ const databaseFunctions = {
     createNewAlarms: async function addAlarmsToAlarmsTable(createAlarmJson, stateCallback) {
         console.log("\nFile: support_files/dynamoFunctions calling function 'createNewAlarm()'  Argument Passed : ");
 
-        // create alarm uid using the data input
-        createAlarmJson['alarm_uid'] = `${createAlarmJson.alarm_attach_to}_${createAlarmJson.alarm_threshold_val}_${createAlarmJson.alarm_for_time}_${createAlarmJson.alarm_time_unit}`;
         // add time of insertion to the data;
         createAlarmJson['time_of_insertion'] = `${(Math.round((new Date()).getTime() / 1000)).toString()}`;
+        // create alarm uid using the data input
+        createAlarmJson['alarm_uid'] = `${createAlarmJson.alarm_attach_to}_${createAlarmJson.alarm_threshold_val}_${createAlarmJson.alarm_for_time}_${createAlarmJson.alarm_time_unit}_${createAlarmJson.time_of_insertion}`;
 
         createAlarmJson['alarm_activation_status'] = `enabled`;
         // gyankritiDataObject['search_helper'] = `${gyankritiDataObject.standard}_${gyankritiDataObject.section}_${gyankritiDataObject.route}_${gyankritiDataObject.shift}`;
