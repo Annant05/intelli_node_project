@@ -59,7 +59,7 @@ function registerNewUser() {
         success: function (response) {
             console.log(response.success);
             if (response.success) {
-                alert('new user registered');
+                alert('new user registered. \nPlease Check your email to verify.');
                 window.location.replace("/login");
                 // modal_create_alert.modal('hide');
             } else {

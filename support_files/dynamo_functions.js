@@ -6,6 +6,9 @@ const config = require('../config/config');
 AWS.config.update(config.getAWS_JSONCredentials());
 const docClientDynamo = new AWS.DynamoDB.DocumentClient();
 
+const emailClient = require('../support_files/ses_email_functions');
+const msgClient = require('../support_files/sms_api');
+
 // Table For alerts.
 const TABLE_ALARMS = config.TABLE_ALARMS;
 const TABLE_USERS = config.TABLE_USERS;
@@ -83,7 +86,23 @@ const databaseFunctions = {
                 }// an error occurred
                 else {
                     console.log("\nData saved ", data);
-                    stateCallback(true);
+                    const EMAIL = 'email', MOBILE = 'mobile';
+
+                    let messageTemplate = `Dear User,\nGreetings!\nA new support case '${newCaseJson.case_subject}' has been registered.\nThank You\nTeam Intelli Meter.`;
+
+                    if (newCaseJson.case_contact_method === EMAIL) {
+                        console.log('sending email for support ');
+                        emailClient.sendEmailCustomSubjectBody(newCaseJson.case_contact, 'Support Case Registered', messageTemplate, (isSuccess) => {
+                            stateCallback(isSuccess);
+                        });
+                    } else if (newCaseJson.case_contact_method === MOBILE) {
+                        console.log('sending sms for support ');
+                        msgClient.sendSMS(newCaseJson.case_contact, messageTemplate, (isSuccess) => {
+                            stateCallback(isSuccess);
+                        });
+                    } else {
+                        stateCallback(false);
+                    }
                 }
             });
 
@@ -133,13 +152,8 @@ const databaseFunctions = {
     createNewIntelliDevice: async function addIntelliDevicesToDevicesTable(newDeviceJson, stateCallback) {
         console.log("\nFile: support_files/dynamoFunctions calling function 'createNewIntelliDevice()'  Argument Passed : ");
 
-        // create alarm uid using the data input
-        // newUserJson['alarm_uid'] = `${newUserJson.alarm_attach_to}_${newUserJson.alarm_threshold_val}_${newUserJson.alarm_for_time}_${newUserJson.alarm_time_unit}`;
         // // add time of insertion to the data;
         newDeviceJson['time_of_insertion'] = `${(Math.round((new Date()).getTime() / 1000)).toString()}`;
-
-        // newUserJson['alarm_activation_status'] = `enabled`;
-        // gyankritiDataObject['search_helper'] = `${gyankritiDataObject.standard}_${gyankritiDataObject.section}_${gyankritiDataObject.route}_${gyankritiDataObject.shift}`;
 
         const params = {
             TableName: TABLE_DEVICES,
@@ -216,13 +230,9 @@ const databaseFunctions = {
     createNewUser: async function addUserToUsersTable(newUserJson, stateCallback) {
         console.log("\nFile: support_files/dynamoFunctions calling function 'createNewUsers()'  Argument Passed : ");
 
-        // create alarm uid using the data input
-        // newUserJson['alarm_uid'] = `${newUserJson.alarm_attach_to}_${newUserJson.alarm_threshold_val}_${newUserJson.alarm_for_time}_${newUserJson.alarm_time_unit}`;
         // // add time of insertion to the data;
         newUserJson['time_of_insertion'] = `${(Math.round((new Date()).getTime() / 1000)).toString()}`;
-
-        // newUserJson['alarm_activation_status'] = `enabled`;
-        // gyankritiDataObject['search_helper'] = `${gyankritiDataObject.standard}_${gyankritiDataObject.section}_${gyankritiDataObject.route}_${gyankritiDataObject.shift}`;
+        newUserJson['email_verified'] = 'pending';
 
         const params = {
             TableName: TABLE_USERS,
@@ -240,7 +250,9 @@ const databaseFunctions = {
                 }// an error occurred
                 else {
                     console.log("\nData saved ", data);
-                    stateCallback(true);
+                    emailClient.sendVerificationEmail(newUserJson.user_email, (isSuccess) => {
+                        stateCallback(isSuccess);
+                    });
                 }
             });
 
