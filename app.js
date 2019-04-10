@@ -9,11 +9,6 @@ require('log-timestamp');
 // Declaration related to servers
 const PORT = process.env.PORT || 80;
 
-request('http://169.254.169.254/latest/meta-data/public-ipv4', async function (error, response, body) {
-    if (body !== undefined) console.log('\nserver started on ip:port : http://' + body + ":" + PORT);
-    else console.log('\nserver started on ip:port : ' + 'http://localhost' + ":" + PORT);
-});
-
 app.listen(PORT, async function (err) {
     if (err) console.log("There was some problem in starting the server  : " + JSON.stringify(err, undefined, 2));
     else console.log('\nserver started on the port : ' + PORT);
@@ -37,6 +32,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.use('/', require('./routes/main_router'));
 
 console.log('\nServer-side code running');
+
+request('http://169.254.169.254/latest/meta-data/public-ipv4', async function (error, response, body) {
+    if (body !== undefined) console.log('\nserver started on ip:port : http://' + body + ":" + PORT);
+    else console.log('\nserver started on ip:port : ' + 'http://localhost' + ":" + PORT);
+});
 
 app.get('/basetemplate', function (req, res) {
     res.render("basetemplate", {TITLE: "BASIC TEMPLATE"});
