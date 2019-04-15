@@ -1,7 +1,11 @@
+checkUserLogin();
+
 let pastRecordsChart = null;
 let dropdown_device = null;
 
 function documentReady() {
+
+
     pastRecordsChart = $('#pastRecordsChart ');
     dropdown_device = $('#dropdown_device');
 

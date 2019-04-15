@@ -1,9 +1,13 @@
+checkUserLogin();
+
 let usagePieChart = null;
 let costBarChart = null;
 let table_devices = null;
 let table_devices_body = null;
 
 function documentReady() {
+
+
     usagePieChart = $('#usagePieChart ');
     costBarChart = $('#costBarChart ');
 

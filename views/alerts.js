@@ -1,8 +1,16 @@
+checkUserLogin();
+
 let table_alerts = null;
 let table_alerts_body = null;
 let buttons_actions = null;
 let button_create_alerts = null;
 let modal_create_alert = null;
+
+
+let menu_button_delete_alarm = null;
+let menu_button_edit_alarm = null;
+let menu_button_enable_alarm = null;
+let menu_button_disable_alarm = null;
 
 
 let input_alarm_name = null;
@@ -12,12 +20,23 @@ let input_alarm_threshold_val = null;
 let input_alarm_for_time = null;
 let input_alarm_time_unit = null;
 
+
 let modal_button_create_alert = null;
+
+let selectedRowID = null;
 
 const actionClassSelector = $('.action_links');
 
+// some string constants for avoiding spelling mistakes
+const ENABLE = 'enable';
+const DISABLE = 'disable';
+const DELETE = 'delete';
+const EDIT = 'edit';
+
 function documentReady() {
     // initializations
+
+
     table_alerts = $('#table_alerts');
     table_alerts_body = $('#table_alerts_body');
     buttons_actions = $('#buttons_actions');
@@ -26,6 +45,11 @@ function documentReady() {
     button_create_alerts = $('#button_create_alerts');
     modal_create_alert = $('#modal_create_alert');
 
+
+    menu_button_delete_alarm = $('#menu_button_delete_alarm ');
+    menu_button_edit_alarm = $('#menu_button_edit_alarm ');
+    menu_button_enable_alarm = $('#menu_button_enable_alarm ');
+    menu_button_disable_alarm = $('#menu_button_disable_alarm ');
 
     input_alarm_name = $('#input_alarm_name ');
     attach_to = $('#attach_to ');
@@ -89,19 +113,23 @@ function attachTableTriggers() {
 
         const clickedCell = $(e.target).closest("tr");
         // console.log(clickedCell);
-
         const highlightClassString = "table-primary";
 
         // if will disable the action button and also remove highlight class
         if (clickedCell.hasClass(highlightClassString)) {
             clickedCell.toggleClass(highlightClassString, false);
             actionClassSelector.toggleClass('disabled', true);
+            selectedRowID = null;
             return;
         }
+
 
         $(`.${highlightClassString}`).toggleClass(highlightClassString, false);
         clickedCell.toggleClass(highlightClassString, true);
         actionClassSelector.toggleClass('disabled', false);
+
+        console.log("setting selectedRowID");
+        selectedRowID = table_alerts_body.find('tr.table-primary').attr('id');
 
     });
 
@@ -117,6 +145,70 @@ function attachButtonsTriggers() {
     modal_button_create_alert.click(() => {
         createNewAlarm();
     });
+
+
+    menu_button_delete_alarm.click(deleteAlarmFromServer);
+    menu_button_enable_alarm.click(() => {
+        executeUpdateOnServer(ENABLE);
+    });
+    menu_button_disable_alarm.click(() => {
+        executeUpdateOnServer(DISABLE);
+    });
+
+
+    menu_button_edit_alarm.click(editAlarm);
+
+}
+
+function editAlarm() {
+
+}
+
+function deleteAlarmFromServer() {
+    if (selectedRowID !== null) {
+
+        $.ajax({
+            url: '/delete-alert',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({alarm_uid: selectedRowID}),
+            success: function (response) {
+                console.log(response.success);
+                if (response.success) {
+                    displayTableFromServerData();
+                } else {
+                    alert("There was some error deleting alert.")
+                }
+            }
+        });
+
+    } else {
+        alert('Select a row first.');
+    }
+}
+
+function executeUpdateOnServer(updateAction) {
+
+    if (selectedRowID !== null) {
+
+        $.ajax({
+            url: '/update-alert',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({alarm_uid: selectedRowID, updateAction: updateAction}),
+            success: function (response) {
+                console.log(response.success);
+                if (response.success) {
+                    displayTableFromServerData();
+                } else {
+                    alert("There was some error updating alert.")
+                }
+            }
+        });
+
+    } else {
+        alert('Select a row first.');
+    }
 
 }
 
@@ -153,7 +245,7 @@ function createNewAlarm() {
             }
         });
     } else {
-        alert('mobile no is not right');
+        alert('Please check Mobile no is not 10 digit.');
     }
 }
 
@@ -172,7 +264,7 @@ function displayTableFromServerData() {
         do {
             let element = alarms_array[count];
 
-            let row_start = `<tr>
+            let row_start = `<tr id="${element.alarm_uid}">
                 <td> ${element.alarm_name}</td>
                 <td>${element.alarm_attach_to}</td>`;
 
@@ -182,6 +274,7 @@ function displayTableFromServerData() {
                 <td>${element.alarm_activation_status}</td>
             </tr>`;
 
+            let alarmUID = ``;
             table_alerts_body.append(row_start + row_state_col + row_end);
             count++;
         } while (count !== alarms_array.length);
@@ -206,7 +299,7 @@ function displayTableFromServerData() {
                 if (alarms_array.length) {
                     requestAnimationFrame(renderTableArray);
                 } else {
-                    alert('no element in array');
+                    alert('You do not have any alerts. Please add one');
                 }
                 // requestAnimationFrame(renderTableArray);
             } else {

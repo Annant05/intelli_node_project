@@ -3,6 +3,8 @@ let input_email = null;
 let input_password = null;
 let button_login = null;
 
+const expiresTime = {expires: 1};
+
 function documentReady() {
 
     form_login = $('#form_login');
@@ -26,6 +28,8 @@ function documentReady() {
 
 
     });
+
+    $.cookie('user_email', 'null', expiresTime);
 }
 
 function sendLoginDataToServer(loginJson) {
@@ -43,7 +47,6 @@ function sendLoginDataToServer(loginJson) {
 
                 console.log(response.userInfoJson);
 
-                const expiresTime = {expires: 1};
                 $.cookie('user_email', response.userInfoJson.user_email, expiresTime);
                 $.cookie('user_full_name', response.userInfoJson.user_full_name, expiresTime);
 

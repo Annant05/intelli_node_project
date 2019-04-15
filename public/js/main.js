@@ -170,6 +170,7 @@ let user_full_name = null;
 let user_email = null;
 
 function documentReady() {
+
     user_full_name = $('.user_full_name');
     user_email = $('#user_email');
 
@@ -185,6 +186,14 @@ function clearCookies() {
     $.removeCookie('user_email');
     $.removeCookie('user_full_name');
     window.location.replace('/login');
+}
+
+function checkUserLogin() {
+    if ($.cookie('user_email') === 'null') {
+        window.stop();
+        alert("Please Login first to access this page.");
+        window.location.replace('/login');
+    }
 }
 
 $(documentReady);

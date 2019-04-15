@@ -1,3 +1,5 @@
+checkUserLogin();
+
 let form_new_device = null;
 
 let input_device_ivrs = null;
@@ -10,6 +12,7 @@ let button_add_device = null;
 
 
 function documentReady() {
+
     form_new_device = $('#form_new_device ');
 
     input_device_ivrs = $('#input_device_ivrs ');

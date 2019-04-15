@@ -1,3 +1,5 @@
+checkUserLogin();
+
 let form_case_support = null;
 let dropdown_case_category = null;
 let input_other_case_category = null;
@@ -24,6 +26,8 @@ let contactMethod = method.NULL;
 let isOtherFieldDisabled = true;
 
 function documentReady() {
+
+    checkUserLogin();
 
     form_case_support = $('#form_case_support');
 

@@ -16,6 +16,13 @@ const TABLE_DEVICES = config.TABLE_DEVICES;
 const TABLE_SUPPORT_CASES = config.TABLE_SUPPORT_CASES;
 
 
+// some string constants for avoiding spelling mistakes
+const ENABLE = 'enable';
+const DISABLE = 'disable';
+const DELETE = 'delete';
+const EDIT = 'edit';
+
+
 // Object with all the database support functions.
 const databaseFunctions = {
 
@@ -31,7 +38,7 @@ const databaseFunctions = {
 
     // getAlertsCountOfIntelliDevices: async function getAlertsAttacedToAnIntelliDevicesUsingDevicesTableAndAlertsTable(device_ivrs, sendDataInCallback) {
     //
-    //     console.log("\nFile: support_files/dynamoStudent calling function 'getAlertsCountOfIntelliDevices()'");
+    //     console.log("\nFile: support_files/databaseFunctions calling function 'getAlertsCountOfIntelliDevices()'");
     //
     //     let params = {
     //         TableName: TABLE_DEVICES,
@@ -117,7 +124,7 @@ const databaseFunctions = {
 
     getUserIntelliDevices: async function getUserIntelliDevicesFromDevicesTable(user_email, sendDataInCallback) {
 
-        console.log("\nFile: support_files/dynamoStudent calling function 'getUserIntelliDevices()'");
+        console.log("\nFile: support_files/databaseFunctions calling function 'getUserIntelliDevices()'");
 
         let params = {
             TableName: TABLE_DEVICES,
@@ -306,7 +313,7 @@ const databaseFunctions = {
     //* Function to get all the alarms using the alarm_creator from the database  */
     getCurrentAlarms: async function getCurrentAlarmsUsingAlarmCreatorFromAlarmsTable(user_email, sendDataInCallback) {
 
-        console.log("\nFile: support_files/dynamoStudent calling function 'getCurrentAlarms()'");
+        console.log("\nFile: support_files/databaseFunctions calling function 'getCurrentAlarms()'");
 
 
         let params = {
@@ -338,6 +345,111 @@ const databaseFunctions = {
         }
     },
 
+
+    updateAlarmAttributes: async function updateAlarmAttributesInAlertsTable(alarm_uid, updateAction, stateCallback) {
+
+        console.log("\nFile: support_files/databaseFunctions calling function 'updateAlarmAttributes()'");
+
+        let params = {
+            TableName: TABLE_ALARMS,
+            Key: {
+                alarm_uid: alarm_uid
+            },
+            ReturnValues: "UPDATED_NEW"
+        };
+
+        //  set the Update Expression according to the updateAction;
+
+        if (updateAction === ENABLE) {
+            params['UpdateExpression'] = "set #str_alarm_activation_status = :val_alarm_activation_status";
+            params['ExpressionAttributeValues'] = {
+                ":val_alarm_activation_status": "enabled",
+
+            };
+            params['ExpressionAttributeNames'] = {
+                "#str_alarm_activation_status": "alarm_activation_status"
+            }
+
+        } else if (updateAction === DISABLE) {
+            params['UpdateExpression'] = "set #str_alarm_activation_status = :val_alarm_activation_status";
+            params['ExpressionAttributeValues'] = {
+                ":val_alarm_activation_status": "disabled",
+
+            };
+            params['ExpressionAttributeNames'] = {
+                "#str_alarm_activation_status": "alarm_activation_status"
+            }
+
+        } else {
+            console.log("\nThere was some error in elseif");
+            stateCallback(false);
+        }
+
+        // const gmm = {
+        //     UpdateExpression: "set admission_status = :new_admission_status, gyankriti_enrollment = :enrollment",
+        //     ConditionExpression:
+        //         "admission_status = :pending",
+        //     ExpressionAttributeValues:
+        //         {
+        //             ":new_admission_status": "completed",
+        //             ":pending": "pending",
+        //             ":enrollment": gyankriti_enrollment
+        //         }
+        // };
+
+        console.log("\nparams for function : update(params) : " + JSON.stringify(params));
+
+
+        try {
+            await docClientDynamo.update(params, (err, data) => {
+                if (err) {
+                    console.log("\nThere was some error ", err, err.stack);
+                    stateCallback(false);
+
+                }// an error occurred
+                else {
+                    console.log("\nData saved ", data);
+                    stateCallback(true);
+
+                }
+            });
+
+        } catch (err) {
+            console.log("\nError :  " + err);
+        }
+    },
+
+    deleteAlarm: async function removeAlarmFromAlertsTable(alarm_uid, stateCallback) {
+
+        console.log("\nFile: support_files/databaseFunctions calling function 'deleteAlarm()'");
+
+        let params = {
+            TableName: TABLE_ALARMS,
+            Key: {
+                alarm_uid: alarm_uid
+            }
+        };
+
+        console.log("\nparams for function : update(params) : " + JSON.stringify(params));
+
+        try {
+            await docClientDynamo.delete(params, (err, data) => {
+                if (err) {
+                    console.log("\nThere was some error ", err, err.stack);
+                    stateCallback(false);
+
+                }// an error occurred
+                else {
+                    console.log("\nData saved ", data);
+                    stateCallback(true);
+
+                }
+            });
+
+        } catch (err) {
+            console.log("\nError :  " + err);
+        }
+    }
 };
 
 

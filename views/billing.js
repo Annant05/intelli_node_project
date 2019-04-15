@@ -1,6 +1,9 @@
+checkUserLogin();
+
 let dropdown_device = null;
 
 function documentReady() {
+
     dropdown_device = $('#dropdown_device');
 
     requestAnimationFrame(appendToDeviceDropdown);

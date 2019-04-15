@@ -186,6 +186,44 @@ router.post('/show-alert', async (req, res) => {
 });
 
 
+router.post('/update-alert', async (req, res) => {
+    console.log("\nPOST: '/update-alert' = update alarm in db.");
+
+    const updateAction = req.body.updateAction;
+    const alarm_uid = req.body.alarm_uid;
+
+    try {
+
+        await dynamoFunctions.updateAlarmAttributes(alarm_uid, updateAction, (isSuccess) => {
+            res.send({success: isSuccess});
+        });
+
+    } catch (e) {
+        console.log("exception e : " + e);
+        res.send({success: false});
+    }
+
+});
+
+router.post('/delete-alert', async (req, res) => {
+    console.log("\nPOST: '/delete-alert' = update alarm in db.");
+
+    // const updateAction = req.body.updateAction;
+    const alarm_uid = req.body.alarm_uid;
+
+    try {
+
+        await dynamoFunctions.deleteAlarm(alarm_uid, (isSuccess) => {
+            res.send({success: isSuccess});
+        });
+
+    } catch (e) {
+        console.log("exception e : " + e);
+        res.send({success: false});
+    }
+
+});
+
 router.get('/past_records', function (req, res) {
     console.log("GET: '/past_records' = Render Web-Page");
     res.render('past_records') //, {TITLE: TITLE});
