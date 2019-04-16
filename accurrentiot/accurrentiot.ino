@@ -2,6 +2,10 @@
 
 //#include "ACS712.h"
 
+#include <SoftwareSerial.h>
+
+SoftwareSerial ArduinoUno(7,8);
+
 /*
   This example shows how to measure the power consumption
   of devices in 230V electrical system
@@ -23,8 +27,15 @@ float readingFor5Sec = 0;
 unsigned long last_time =0;
 unsigned long current_time =0;
 
+char reading[5];
+
 void setup() {
   Serial.begin(115200);
+
+  // set comm baud rate.
+  Serial.println("Setting SoftSerial baud = 9600");
+  ArduinoUno.begin(57600);
+  Serial.println("Setting SoftSerial baud done");
 
   // This method calibrates zero point of sensor,
   // It is not necessary, but may positively affect the accuracy
@@ -43,6 +54,7 @@ void loop() {
 
   // To calculate the power we need voltage multiplied by current
   float watt = U * I;
+  Serial.println();
   Serial.println(String("I = ") + I + String("   Watt = ") + watt );
 
 //
@@ -54,16 +66,24 @@ void loop() {
  unsigned long currentMillis = millis();
 
   if (currentMillis - previousMillis >= interval) {
-    // save the last time you blinked the LED
-//    Wh = Wh +  watt *(( current_time -last_time) /3600000.0) ;
-//    Serial.println(String("Wh after 5 sec = ") + Wh );
-
-    readingFor5Sec = watt *((currentMillis - previousMillis) /(3600000.0));
-    MAIN_READING += readingFor5Sec;
-    Serial.println(String("-> readingIn 5 Seconds = ") +  readingFor5Sec );
-    Serial.println(String(":> MAIN_READING = ") + MAIN_READING  );
     Serial.println();
 
+    //calc watt/hour using this formula
+    readingFor5Sec = watt *((currentMillis - previousMillis) /(3600000.0));
+    MAIN_READING += readingFor5Sec;
+
+    Serial.println(String("-> readingIn 5 Seconds = ") +  readingFor5Sec );
+    Serial.println(String(":> MAIN_READING = ") + MAIN_READING  );
+
+//    readingFor5Sec = random(5) ;//10.0;
+    //send data to esp8266
+    dtostrf(readingFor5Sec , 4, 2, reading);
+
+    Serial.print("Values written to serial.write : ");
+    Serial.write(reading);
+    ArduinoUno.write(reading);
+
+    // reset for next 5 seconds
     readingFor5Sec = 0;
     previousMillis = currentMillis;
 
@@ -79,4 +99,5 @@ void loop() {
 //  delay(10000);
 
     delay(2500);
+//     Serial.println(ArduinoUno.read());
 }

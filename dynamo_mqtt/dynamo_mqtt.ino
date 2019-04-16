@@ -9,10 +9,14 @@
 #include <MQTT.h>
 #include <ArduinoJson.h> //https://github.com/bblanchon/ArduinoJson (use v6.xx)
 #include <time.h>
+
+#include <SoftwareSerial.h>
+SoftwareSerial NodeMCU(D7,D8);
+
 #define emptyString String()
 
 //Follow instructions from https://github.com/debsahu/ESP-MQTT-AWS-IoT-Core/blob/master/doc/README.md
-//Enter values in secrets.h 
+//Enter values in secrets.h
 #include "secrets.h"
 
 #if !(ARDUINOJSON_VERSION_MAJOR == 6 and ARDUINOJSON_VERSION_MINOR >= 7)
@@ -21,8 +25,11 @@
 
 const int MQTT_PORT = 8883;
 // const char MQTT_SUB_TOPIC[] = "$aws/things/" THINGNAME "/shadow/update";
-const char MQTT_PUB_TOPIC[] =  "$aws/rules/dynamotopic/my/topic" ; //THINGNAME "/shadow/update";
-//const char MQTT_PUB_SHADOW_TOPIC[] = "$aws/things/" THINGNAME "/shadow/update";
+const char MQTT_PUB_TOPIC[] = "$aws/rules/dynamotopic/my/topic" ; //THINGNAME "/shadow/update";
+//const char MQTT_PUB_TOPIC[] = "$aws/things/" THINGNAME "/shadow/update";
+
+
+char reading[5];
 
 #ifdef USE_SUMMER_TIME_DST
 uint8_t DST = 1;
@@ -44,9 +51,11 @@ unsigned long lastMillis = 0;
 time_t now;
 time_t nowish = 1510592825;
 
+float reading5Sec;
+
 void NTPConnect(void)
 {
-  Serial.print("Setting time using SNTP");
+  Serial.print("Setting netime using SNTP");
   configTime(TIME_ZONE * 3600, DST * 3600, "pool.ntp.org", "time.nist.gov");
   now = time(nullptr);
   while (now < nowish)
@@ -176,11 +185,38 @@ void sendData(void)
 {
   DynamicJsonDocument jsonBuffer(JSON_OBJECT_SIZE(3) + 100);
   JsonObject root = jsonBuffer.to<JsonObject>();
-  JsonObject state = root.createNestedObject("state");
-  JsonObject state_reported = state.createNestedObject("reported");
-  state_reported["value"] = random(100); 
-//  JsonObject temp = root.createNestedObject("temp");
-  root["ivrs"] = "9806247089";
+//  JsonObject state = root.createNestedObject("state");
+//  JsonObject state_reported = state.createNestedObject("reported");
+//  state_reported["value"] = random(100);
+
+//if(Serial.available() > 0 ){
+//   delay(100); //allows all serial sent to be received together
+//    while(Serial.available() && i<5) {
+//     watt[i++] = Serial.read();
+//    }
+//    root["watt"] = watt[i++];
+//    watt[i++]='\0';
+
+     int i=0;
+ float valread;
+
+if(NodeMCU.available()  > 0){
+ while(NodeMCU.available() && i<5) {
+       reading[i++] = NodeMCU.read();
+  }
+  reading[i++]='\0';
+}
+      valread = atof(reading);
+ Serial.println(String("WATT :  ") + valread);
+ delay(5000);
+
+     root["ivrs"] = "9806247089" ;
+     root["reading"] = valread;
+//  }
+//   root["temp"] = 100;
+//   root["timestamp"] = random(100);
+
+
   Serial.printf("Sending  [%s]: ", MQTT_PUB_TOPIC);
 //  Serial.printf("\nSending to shadow [%s]: ", MQTT_PUB_SHADOW_TOPIC);
   Serial.println();
@@ -188,13 +224,41 @@ void sendData(void)
   serializeJson(root, shadow, sizeof(shadow));
   if (!client.publish(MQTT_PUB_TOPIC, shadow, false, 0))
     lwMQTTErr(client.lastError());
+     digitalWrite(LED_BUILTIN, LOW);
+     delay(100);// turn the LED on (HIGH is the voltage level)
 //  if (!client.publish(MQTT_PUB_SHADOW_TOPIC, shadow, false, 0))
 //    lwMQTTErr(client.lastError());
+     digitalWrite(LED_BUILTIN, HIGH);
 }
+
+//void printdatafromserial(){
+//
+//  int i= 0;
+// if(Serial.available() > 0 ){
+//   delay(100); //allows all serial sent to be received together
+//    while(Serial.available() && i<5) {
+//      passValue[i++] = Serial.read();
+//      Serial.println(passValue[i]);
+//    }
+//    passValue[i++]='\0';
+//  }else{
+//    Serial.println("no data on serial");
+//  }
+//
+//  reading5Sec = atof(passValue);
+//  Serial.println(String(" watt from serial : ") + reading5Sec );
+//}
+
+
 
 void setup()
 {
   Serial.begin(115200);
+
+  NodeMCU.begin(57600);
+  pinMode(D7,INPUT);
+  pinMode(D8,OUTPUT);
+
   delay(5000);
   Serial.println();
   Serial.println();
@@ -220,7 +284,6 @@ void setup()
 
   client.begin(MQTT_HOST, MQTT_PORT, net);
   client.onMessage(messageReceived);
-
   connectToMqtt();
 }
 
