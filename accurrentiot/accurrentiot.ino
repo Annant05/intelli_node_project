@@ -17,7 +17,8 @@ ACS712 sensor(ACS712_30A, A0);
 unsigned long previousMillis = 0;        // will store last time LED was updated
 const long interval = 5000;           // interval at which to blink (milliseconds)
 
-float readingIn5Seconds = 0;
+float MAIN_READING = 0;
+float readingFor5Sec = 0;
 
 unsigned long last_time =0;
 unsigned long current_time =0;
@@ -45,8 +46,8 @@ void loop() {
   Serial.println(String("I = ") + I + String("   Watt = ") + watt );
 
 //
-//  readingIn5Seconds += watt;
-//  Serial.println(String("readingIn 2.5 Seconds = ") + readingIn5Seconds );
+//  MAIN_READING += watt;
+//  Serial.println(String("readingIn 2.5 Seconds = ") + MAIN_READING );
 
 
 
@@ -57,15 +58,19 @@ void loop() {
 //    Wh = Wh +  watt *(( current_time -last_time) /3600000.0) ;
 //    Serial.println(String("Wh after 5 sec = ") + Wh );
 
-    readingIn5Seconds = readingIn5Seconds + watt *((currentMillis - previousMillis) /(3600000.0));
-    Serial.println(String("-> readingIn 5 Seconds = ") + readingIn5Seconds  );
+    readingFor5Sec = watt *((currentMillis - previousMillis) /(3600000.0));
+    MAIN_READING += readingFor5Sec;
+    Serial.println(String("-> readingIn 5 Seconds = ") +  readingFor5Sec );
+    Serial.println(String(":> MAIN_READING = ") + MAIN_READING  );
     Serial.println();
+
+    readingFor5Sec = 0;
     previousMillis = currentMillis;
-    
-    if(readingIn5Seconds >= 1.0){
-    Serial.println(String(">>> reading above 1 Unit = ") + readingIn5Seconds  );
+
+    if(MAIN_READING >= 1.0){
+    Serial.println(String(">>> reading above 1 Unit = ") + MAIN_READING  );
     Serial.println();
-    readingIn5Seconds = 0;
+    MAIN_READING = 0;
     }
   }
 
