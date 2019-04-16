@@ -11,9 +11,19 @@
 // We have 30 amps version sensor connected to A1 pin of arduino
 // Replace with your version if necessary
 ACS712 sensor(ACS712_30A, A0);
+//char watt[5];
+//float Wh =0 ;
+
+unsigned long previousMillis = 0;        // will store last time LED was updated
+const long interval = 5000;           // interval at which to blink (milliseconds)
+
+float readingIn5Seconds = 0;
+
+unsigned long last_time =0;
+unsigned long current_time =0;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // This method calibrates zero point of sensor,
   // It is not necessary, but may positively affect the accuracy
@@ -32,10 +42,36 @@ void loop() {
 
   // To calculate the power we need voltage multiplied by current
   float watt = U * I;
+  Serial.println(String("I = ") + I + String("   Watt = ") + watt );
 
-  Serial.println(String("I = ") + I );
-  Serial.println(String("watt = ") + watt );
+//
+//  readingIn5Seconds += watt;
+//  Serial.println(String("readingIn 2.5 Seconds = ") + readingIn5Seconds );
+
+
+
+ unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis >= interval) {
+    // save the last time you blinked the LED
+//    Wh = Wh +  watt *(( current_time -last_time) /3600000.0) ;
+//    Serial.println(String("Wh after 5 sec = ") + Wh );
+
+    readingIn5Seconds = readingIn5Seconds + watt *((currentMillis - previousMillis) /(3600000.0));
+    Serial.println(String("-> readingIn 5 Seconds = ") + readingIn5Seconds  );
+    Serial.println();
+    previousMillis = currentMillis;
+    
+    if(readingIn5Seconds >= 1.0){
+    Serial.println(String(">>> reading above 1 Unit = ") + readingIn5Seconds  );
+    Serial.println();
+    readingIn5Seconds = 0;
+    }
+  }
+
+
 //  Serial.write(watt);
 //  delay(10000);
-  delay(1000);
+
+    delay(2500);
 }
