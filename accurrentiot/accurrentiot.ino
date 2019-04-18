@@ -19,22 +19,21 @@ ACS712 sensor(ACS712_30A, A0);
 //float Wh =0 ;
 
 unsigned long previousMillis = 0;        // will store last time LED was updated
-const long interval = 5000;           // interval at which to blink (milliseconds)
+const long interval = 1000;           // interval at which to blink (milliseconds)
 
 float MAIN_READING = 0;
 float readingFor5Sec = 0;
 
 unsigned long last_time =0;
 unsigned long current_time =0;
-
-char reading[5];
+ int countLoop = 0;
 
 void setup() {
   Serial.begin(115200);
 
   // set comm baud rate.
-  Serial.println("Setting SoftSerial baud = 9600");
-  ArduinoUno.begin(57600);
+  Serial.println("Setting SoftSerial baud = 115200");
+  ArduinoUno.begin(115200);
   Serial.println("Setting SoftSerial baud done");
 
   // This method calibrates zero point of sensor,
@@ -44,6 +43,7 @@ void setup() {
 }
 
 void loop() {
+
   // We use 230V because it is the common standard in European countries
   // Change to your local, if necessary
   float U = 230;
@@ -54,50 +54,73 @@ void loop() {
 
   // To calculate the power we need voltage multiplied by current
   float watt = U * I;
-  Serial.println();
+//  Serial.println();
   Serial.println(String("I = ") + I + String("   Watt = ") + watt );
-
-//
-//  MAIN_READING += watt;
-//  Serial.println(String("readingIn 2.5 Seconds = ") + MAIN_READING );
-
 
 
  unsigned long currentMillis = millis();
 
   if (currentMillis - previousMillis >= interval) {
-    Serial.println();
+    char MAIN_DATA[11] ="N0.00,0.00";
 
-    //calc watt/hour using this formula
-    readingFor5Sec = watt *((currentMillis - previousMillis) /(3600000.0));
+
+     //calc watt/hour using this formula every second and add this to reading5Sec
+    readingFor5Sec += watt *((currentMillis - previousMillis) /(3600000.0));
+
+    // count for 5 loops to send this data.
+    if(countLoop == 5){
+
+    // add to main reading after 5 seconds.
     MAIN_READING += readingFor5Sec;
 
+    // log reading5sec + MAIN_READING
     Serial.println(String("-> readingIn 5 Seconds = ") +  readingFor5Sec );
     Serial.println(String(":> MAIN_READING = ") + MAIN_READING  );
 
-//    readingFor5Sec = random(5) ;//10.0;
-    //send data to esp8266
-    dtostrf(readingFor5Sec , 4, 2, reading);
+    // create temp readign5sec string
+    char tempR5s[5];
+    dtostrf(readingFor5Sec , 4, 2, tempR5s);
 
-    Serial.print("Values written to serial.write : ");
-    Serial.write(reading);
-    ArduinoUno.write(reading);
+    for(int i = 1 ; i < 5 ; i++)MAIN_DATA[i] = tempR5s[i-1];
+    MAIN_DATA[5] = ',';
 
-    // reset for next 5 seconds
-    readingFor5Sec = 0;
-    previousMillis = currentMillis;
-
+    // Send and log reading above or equal 1.0 unit
     if(MAIN_READING >= 1.0){
     Serial.println(String(">>> reading above 1 Unit = ") + MAIN_READING  );
     Serial.println();
+
+    //set mode Y for MAIN_READING
+    MAIN_DATA[0] = 'Y';
+    }
+
+    // add MAIN_DATA to the MAIN_DATA
+    if(MAIN_DATA[0] == 'Y'){
+    char tempMs[5];
+    dtostrf(MAIN_READING , 4, 2, tempMs);
+    for(int i = 6; i < 10 ; i++)MAIN_DATA[i] = tempMs[i-6];
     MAIN_READING = 0;
     }
-  }
+
+    // display main data
+    Serial.print(" MAIN_DATA TO SEND : ");
+    for(int i=0; i <=10 ;i++)Serial.print(MAIN_DATA[i]);
 
 
-//  Serial.write(watt);
-//  delay(10000);
 
-    delay(2500);
-//     Serial.println(ArduinoUno.read());
+    ArduinoUno.write(MAIN_DATA);
+
+    // reset to record for next 5 seconds
+    countLoop = 0;
+    readingFor5Sec = 0;
+    }
+
+
+      // reset everything
+      previousMillis = currentMillis;
+      countLoop++;
+
+  }   Serial.println();
+
+
+    delay(1000);
 }
