@@ -175,7 +175,7 @@ void sendData(void) {
     JsonObject oneunit = jsonBuffer2.to<JsonObject>();
 
 
-    char MAIN_DATA[11];
+    char MAIN_DATA[11] = "N0.00,0.00";
     char strReading5sec[5], strMAIN_READING[5];
     float read5sec = 0.00, main_reading = 0.00;
 
@@ -188,21 +188,36 @@ void sendData(void) {
         MAIN_DATA[i++] = '\0';
     }
 
-    //    for (int k = 0; k <= 11; k++)Serial.print(MAIN_DATA[i]);
+//        for (int k = 0; k <= 11; k++)Serial.print(MAIN_DATA[i]);
 
     // get first 5 second reading.
-    for (int i = 1; i != 5; i++)strReading5sec[i - 1] = MAIN_DATA[i];
+    for (int j = 1; j != 5; j++)strReading5sec[j - 1] = MAIN_DATA[j];
     strReading5sec[4] = '\0';
     read5sec = atof(strReading5sec);
 
+    // random for testing purposes
+//    read5sec = random(50)/100.0;
+
+    Serial.println(String("Reading 5 second :  ") + read5sec);
+    char IVRS[] = "7415893478";
+    sec5data["ivrs"] = IVRS;
+    oneunit["ivrs"] = IVRS;
+
     // if the first char is Y then get this main reading
     if (MAIN_DATA[0] == 'Y') {
-        for (int i = 1; i != 5; i++)strMAIN_READING[i - 1] = MAIN_DATA[i + 5];
+        for (int j = 1; j != 5; j++)strMAIN_READING[j - 1] = MAIN_DATA[j + 5];
         strMAIN_READING[4] = '\0';
 //        cout << strMAIN_READING << endl;
         main_reading = atof(strMAIN_READING);
+
+
+
+        // random for testing purposes
+//        main_reading = (random(50)/100.0)+1.0;
+
+        oneunit["reading"] = main_reading;
         Serial.println(String("MAIN_READING :  ") + main_reading);
-        Serial.printf("Sending  [%s]: ", MQTT_PUB_INTELLI_DATA);
+        Serial.printf("Sending  [%s]: ", MQTT_PUB_INTELLI_DEVICES);
 
         char shadow[measureJson(oneunit) + 1];
         serializeJson(oneunit, shadow, sizeof(shadow));
@@ -213,21 +228,19 @@ void sendData(void) {
     }
 
 
-    Serial.println(String("Reading 5 second :  ") + read5sec);
-
-    sec5data["ivrs"] = "7415893478";
 
 
     if( read5sec != 0.00){
         sec5data["reading"] = read5sec;
-        Serial.printf("Sending  [%s]: ", MQTT_PUB_INTELLI_DATA);
+        Serial.printf("Sending  [%s]: ", MQTT_PUB_INTELLI_DEVICES);
 //  Serial.printf("\nSending to shadow [%s]: ", MQTT_PUB_SHADOW_TOPIC);
         Serial.println();
         char shadow[measureJson(sec5data) + 1];
         serializeJson(sec5data, shadow, sizeof(shadow));
 
-        if (!client.publish(MQTT_PUB_INTELLI_DATA, shadow, false, 0))
+        if (!client.publish(MQTT_PUB_INTELLI_DEVICES, shadow, false, 0))
             lwMQTTErr(client.lastError());
+
     }else
         Serial.println("Data not sent no server cause no data in reading.\n");
 
